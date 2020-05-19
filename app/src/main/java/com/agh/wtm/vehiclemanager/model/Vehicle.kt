@@ -1,5 +1,7 @@
 package com.agh.wtm.vehiclemanager.model
 
+import kotlin.jvm.internal.Reflection
+
 class Vehicle {
 
     var id: Int = 0
@@ -9,6 +11,7 @@ class Vehicle {
 
     constructor()
 
+    val tag: Class<Vehicle> = Vehicle::class.java
     constructor(id: Int, name: String?, type: VehicleType?, mileage: Int) {
         this.id = id
         this.name = name
