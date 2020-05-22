@@ -1,11 +1,14 @@
 package com.agh.wtm.vehiclemanager.db
 
 import android.content.ContentValues
+import android.database.Cursor
 import android.os.Build
 import android.provider.BaseColumns
 import androidx.annotation.RequiresApi
 import com.agh.wtm.vehiclemanager.model.Fuelling
 import com.agh.wtm.vehiclemanager.model.Vehicle
+import java.time.Instant
+import java.util.*
 
 object VehicleContract {
 
@@ -13,8 +16,8 @@ object VehicleContract {
         val tableName: String
         val sqlCreateEntries: String
         val sqlDeleteEntries: String
-        val entityReflection: Class<T>
         fun values(entity: T): ContentValues
+        fun fromCursor(cursor: Cursor): T
     }
 
     object VehicleEntry : Table<Vehicle> {
@@ -30,13 +33,20 @@ object VehicleContract {
                     "$COLUMN_NAME_MILEAGE INTEGER)" 
 
         override val sqlDeleteEntries = "DROP TABLE IF EXISTS $tableName"
-        override val entityReflection: Class<Vehicle> = Vehicle::class.java
         override fun values(vehicle: Vehicle): ContentValues {
             return ContentValues().apply {
                 put(COLUMN_NAME_NAME, vehicle.name)
                 put(COLUMN_NAME_TYPE, vehicle.type.toString())
                 put(COLUMN_NAME_MILEAGE, vehicle.mileage)
             }
+        }
+        override fun fromCursor(cursor: Cursor): Vehicle {
+            return Vehicle(
+                cursor.getInt(0),
+                cursor.getString(1),
+                Vehicle.VehicleType.valueOf(cursor.getString(2)),
+                cursor.getInt(3)
+            )
         }
     }
 
@@ -52,16 +62,15 @@ object VehicleContract {
         override val sqlCreateEntries =
             "CREATE TABLE $tableName (" +
                     "${BaseColumns._ID} INTEGER PRIMARY KEY," +
-                    "$COLUMN_NAME_VEHICLE_ID INTEGER FOREIGN KEY," +
+                    "$COLUMN_NAME_VEHICLE_ID INTEGER," +
                     "$COLUMN_NAME_DATE INTEGER," +
                     "$COLUMN_NAME_FUEL_AMOUNT DOUBLE," +
                     "$COLUMN_NAME_PRICE_PER_LITRE DOUBLE," +
                     "$COLUMN_NAME_FUEL_TYPE TEXT," +
-                    "$COLUMN_NAME_MILEAGE INTEGER)"
+                    "$COLUMN_NAME_MILEAGE INTEGER," +
+                    " FOREIGN KEY(vehicle_id) REFERENCES vehicle(vehicle_id))"
 
         override val sqlDeleteEntries = "DROP TABLE IF EXISTS ${VehicleEntry.tableName}"
-        override val entityReflection: Class<Fuelling> = Fuelling::class.java
-        @RequiresApi(Build.VERSION_CODES.O)
         override fun values(fuelling: Fuelling): ContentValues {
             return ContentValues().apply {
                 put(COLUMN_NAME_VEHICLE_ID, fuelling.vehicleId)
@@ -72,5 +81,19 @@ object VehicleContract {
                 put(COLUMN_NAME_MILEAGE, fuelling.mileage)
             }
         }
+
+        override fun fromCursor(cursor: Cursor): Fuelling {
+            return Fuelling(
+                cursor.getInt(0),
+                cursor.getInt(1),
+                Date(cursor.getLong(2)),
+                cursor.getDouble(3),
+                cursor.getDouble(4),
+                Fuelling.FuelType.valueOf(cursor.getString(5)),
+                cursor.getInt(6)
+            )
+        }
     }
+
+    val tables: Array<Table<*>> = arrayOf(VehicleEntry, FuellingEntry)
 }

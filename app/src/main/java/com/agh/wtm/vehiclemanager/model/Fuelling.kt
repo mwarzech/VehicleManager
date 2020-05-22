@@ -11,7 +11,7 @@ class Fuelling {
     var fuelType: FuelType? = null
     var mileage: Int = 0
 
-    constructor(){}
+    constructor()
 
     constructor(
         id: Int,

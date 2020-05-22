@@ -1,7 +1,5 @@
 package com.agh.wtm.vehiclemanager.model
 
-import kotlin.jvm.internal.Reflection
-
 class Vehicle {
 
     var id: Int = 0

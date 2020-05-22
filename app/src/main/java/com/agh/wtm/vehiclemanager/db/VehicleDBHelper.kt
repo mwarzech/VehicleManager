@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class VehicleDBHelperHelper(context: Context, private val tables: Array<VehicleContract.Table<*>>) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class VehicleDBHelper(context: Context, private val tables: Array<VehicleContract.Table<*>>) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
         tables.forEach {
             db.execSQL(it.sqlCreateEntries)
@@ -20,10 +20,17 @@ class VehicleDBHelperHelper(context: Context, private val tables: Array<VehicleC
         onUpgrade(db, oldVersion, newVersion)
     }
 
-//    inline fun <reified T> insert(entity: T) {
-//        val contract: VehicleContract.Table<T> = tables.find { it.entityReflection == entity!!::class }
-//        contract.values(entity)
-//    }
+    fun <T> insert(contract: VehicleContract.Table<T>, entity: T): Long {
+        val entityValue = contract.values(entity)
+        return writableDatabase.insert(contract.tableName, null, entityValue)
+    }
+
+    fun <T> getAll(contract: VehicleContract.Table<T>): List<T> {
+        val c = writableDatabase.query(contract.tableName, null, null, null, null, null, null)
+        return generateSequence { if (c.moveToNext()) c else null }
+            .map { contract.fromCursor(it) }
+            .toList()
+    }
 
     companion object {
         const val DATABASE_VERSION = 1
