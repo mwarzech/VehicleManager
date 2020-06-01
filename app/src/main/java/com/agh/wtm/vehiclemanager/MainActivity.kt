@@ -1,6 +1,8 @@
 package com.agh.wtm.vehiclemanager
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -18,14 +20,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         dbHelper = VehicleDBHelper(this, VehicleContract.tables)
-        insertVehicleBtn = findViewById(R.id.insert_vehicle_btn)
+        insertVehicleBtn = findViewById(R.id.add_vehicle_btn)
         selectVehiclesBtn = findViewById(R.id.log_vehicles)
 
         insertVehicleBtn!!.setOnClickListener {
             run {
-                val vehicle = Vehicle(1, "warzecha", Vehicle.VehicleType.CAR, 199998)
-                val insertedId = dbHelper!!.insert(VehicleContract.VehicleEntry, vehicle)
-                Log.d("Inserted id: ", "" + insertedId)
+                val intent = Intent(this, AddVehicleActivity::class.java)
+                startActivity(intent)
+//                val vehicle = Vehicle(1, "warzecha", Vehicle.VehicleType.CAR, 199998)
+//                val insertedId = dbHelper!!.insert(VehicleContract.VehicleEntry, vehicle)
+//                Log.d("Inserted id: ", "" + insertedId)
             }
         }
 

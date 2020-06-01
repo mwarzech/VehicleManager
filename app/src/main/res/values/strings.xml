@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">VehicleManager</string>
+    <string name="title_activity_add_vehicle">AddVehicleActivity</string>
 </resources>
