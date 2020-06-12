@@ -6,9 +6,41 @@
     tools:context=".fragments.MainPageFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/vehicle_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Main page fragment" />
+        android:padding="20dp"
+        android:layout_height="wrap_content" android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/vehicle_name_row"
+            android:layout_width="match_parent"
+            android:weightSum="2"
+            android:layout_height="match_parent" android:orientation="horizontal">
+            <TextView
+                android:id="@+id/vehicle_name_label"
+                android:layout_width="0dp"
+                android:textAlignment="viewEnd"
+                android:layout_height="wrap_content" android:layout_weight="1" android:text="Vehicle name: "/>
+            <TextView
+                android:id="@+id/vehicle_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1" android:text="Name"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/vehicle_mileage_row"
+            android:layout_width="match_parent"
+            android:weightSum="2"
+            android:layout_height="match_parent" android:orientation="horizontal">
+            <TextView
+                android:id="@+id/vehicle_mileage_label"
+                android:layout_width="0dp"
+                android:textAlignment="viewEnd"
+                android:layout_height="wrap_content" android:layout_weight="1" android:text="Mileage: "/>
+            <TextView
+                android:id="@+id/vehicle_mileage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1" android:text="Mileage"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

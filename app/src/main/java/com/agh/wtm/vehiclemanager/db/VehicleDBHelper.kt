@@ -32,6 +32,13 @@ class VehicleDBHelper(context: Context, private val tables: Array<VehicleContrac
             .toList()
     }
 
+    fun <T> getById(contract: VehicleContract.Table<T>, id: Int): T {
+        val c = writableDatabase.query(contract.tableName, null, "_id=?", arrayOf(id.toString()), null, null, null)
+        return generateSequence { if (c.moveToNext()) c else null }
+            .map { contract.fromCursor(it) }
+            .toList()[0]
+    }
+
     companion object {
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "Vehicle.db"
