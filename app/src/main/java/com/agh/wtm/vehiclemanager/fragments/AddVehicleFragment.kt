@@ -45,7 +45,6 @@ class AddVehicleFragment constructor(private val mCtx: Context): Fragment() {
         addVehicleBtn!!.setOnClickListener {
             run {
                addVehicle()
-
             }
         }
 
