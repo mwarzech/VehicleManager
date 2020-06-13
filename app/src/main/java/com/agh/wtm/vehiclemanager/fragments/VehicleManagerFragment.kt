@@ -2,31 +2,24 @@ package com.agh.wtm.vehiclemanager.fragments
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import com.agh.wtm.vehiclemanager.MainActivity
-
+import androidx.fragment.app.Fragment
+import com.agh.wtm.vehiclemanager.AddVehicleActivity
 import com.agh.wtm.vehiclemanager.R
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
-import com.agh.wtm.vehiclemanager.model.Vehicle
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
  * A simple [Fragment] subclass.
  */
 class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() {
 
-    private var addVehicleBtn: Button? = null
-    private var vehicleNameInput: EditText? = null
-    private var vehicleTypeInput: Spinner? = null
-    private var vehicleMileageInput: EditText? = null
+    private var addVehicleFab: FloatingActionButton? = null
     private var dbHelper: VehicleDBHelper? = null
 
     override fun onCreateView(
@@ -34,35 +27,14 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_vehicle_manager, container, false)
-        addVehicleBtn = view.findViewById(R.id.add_vehicle_btn)
-        vehicleNameInput = view.findViewById(R.id.vehicle_name_field)
-        vehicleTypeInput = view.findViewById(R.id.vehicle_type_input)
-        vehicleMileageInput = view.findViewById(R.id.mileage_input_field)
-
-        vehicleTypeInput!!.adapter = ArrayAdapter(mCtx, android.R.layout.simple_selectable_list_item, Vehicle.VehicleType.values())
+        addVehicleFab = view.findViewById(R.id.add_vehicle_fab)
         dbHelper = VehicleDBHelper(mCtx, VehicleContract.tables)
 
-        addVehicleBtn!!.setOnClickListener {
-            run {
-               addVehicle()
-            }
+        addVehicleFab!!.setOnClickListener {
+            val intent = Intent(activity, AddVehicleActivity::class.java)
+            startActivity(intent)
         }
 
         return view
     }
-
-    private fun addVehicle() {
-        val vehicleName = vehicleNameInput!!.text.toString()
-        val vehicleType = vehicleTypeInput!!.selectedItem.toString()
-        val mileage = vehicleMileageInput!!.text.toString().toInt()
-
-        val newVehicle = Vehicle(0, vehicleName, Vehicle.VehicleType.valueOf(vehicleType), mileage)
-        val newId = dbHelper!!.insert(VehicleContract.VehicleEntry, newVehicle)
-        vehicleNameInput!!.text.clear()
-        vehicleMileageInput!!.text.clear()
-
-        val mainActivity: MainActivity = activity as MainActivity
-        mainActivity.addToSpinner(newVehicle.copy(id = newId.toInt()))
-    }
-
 }
