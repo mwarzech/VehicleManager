@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
-import com.agh.wtm.vehiclemanager.fragments.AddVehicleFragment
+import com.agh.wtm.vehiclemanager.fragments.VehicleManagerFragment
 import com.agh.wtm.vehiclemanager.fragments.MainPageFragment
 import com.agh.wtm.vehiclemanager.fragments.RefuellingListFragment
 import com.agh.wtm.vehiclemanager.model.Vehicle
@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
                 replaceFragment(RefuellingListFragment(applicationContext))
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.add_vehicle -> {
-                println("add vehicle pressed")
-                replaceFragment(AddVehicleFragment(applicationContext))
+            R.id.vehicle_manager -> {
+                println("vehicle manager pressed")
+                replaceFragment(VehicleManagerFragment(applicationContext))
                 return@OnNavigationItemSelectedListener true
             }
         }

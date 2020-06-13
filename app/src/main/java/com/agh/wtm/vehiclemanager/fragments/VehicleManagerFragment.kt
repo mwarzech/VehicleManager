@@ -21,7 +21,7 @@ import com.agh.wtm.vehiclemanager.model.Vehicle
 /**
  * A simple [Fragment] subclass.
  */
-class AddVehicleFragment constructor(private val mCtx: Context): Fragment() {
+class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() {
 
     private var addVehicleBtn: Button? = null
     private var vehicleNameInput: EditText? = null
@@ -33,7 +33,7 @@ class AddVehicleFragment constructor(private val mCtx: Context): Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_add_vehicle, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_vehicle_manager, container, false)
         addVehicleBtn = view.findViewById(R.id.add_vehicle_btn)
         vehicleNameInput = view.findViewById(R.id.vehicle_name_field)
         vehicleTypeInput = view.findViewById(R.id.vehicle_type_input)
