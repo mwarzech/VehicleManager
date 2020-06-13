@@ -49,6 +49,10 @@ class VehicleDBHelper(context: Context, private val tables: Array<VehicleContrac
             .toList()
     }
 
+    fun <T> deleteById(contract: VehicleContract.Table<T>, id: Int): Boolean {
+        return writableDatabase.delete(contract.tableName, "_id=?", arrayOf(id.toString())) > 0
+    }
+
     companion object {
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "Vehicle.db"

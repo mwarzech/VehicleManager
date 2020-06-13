@@ -38,7 +38,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:background="@color/white"
+                android:background="@drawable/spinner_bg"
                 android:layout_marginEnd="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
                 <Spinner
                     android:id="@+id/vehicle_spinner_list"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="36dp"
                     android:text="type"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
