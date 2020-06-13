@@ -35,8 +35,8 @@ class MainPageFragment constructor(private val mCtx: Context) : Fragment() {
         vehicleMileageText = view.findViewById(R.id.vehicle_mileage)
         refuellingBtn = view.findViewById(R.id.add_refuelling_btn)
         val activity: MainActivity? = activity as MainActivity?
-        currentVehicle = activity!!.getCurrentVehicle()
-        displayVehicleData()
+       // currentVehicle = activity!!.getCurrentVehicle()
+        //displayVehicleData()
 
         refuellingBtn!!.setOnClickListener{
             run {

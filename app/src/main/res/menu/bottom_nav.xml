@@ -3,15 +3,18 @@
 
     <item
         android:id="@+id/main_page"
-        android:title="Strona główna" />
+        android:title="Strona główna"
+        android:icon="@drawable/ic_home_24px"/>
 
     <item
         android:id="@+id/refuelling_list"
         android:title="Lista tankowań"
+        android:icon="@drawable/path"
         />
 
     <item
-        android:id="@+id/add_vehicle"
-        android:title="Dodaj pojazd" />
+        android:id="@+id/vehicle_manager"
+        android:title="Pojazdy"
+        android:icon="@drawable/car"/>
 
 </menu>

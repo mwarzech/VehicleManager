@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         // set to first vehicle on init
-        setVehicle(1)
+        //setVehicle(1)
         bottom_nav.selectedItemId = R.id.main_page
         bottom_nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         replaceFragment(MainPageFragment(applicationContext))
