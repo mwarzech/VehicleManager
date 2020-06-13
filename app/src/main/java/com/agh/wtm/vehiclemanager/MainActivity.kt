@@ -3,18 +3,18 @@ package com.agh.wtm.vehiclemanager
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.agh.wtm.vehiclemanager.adapters.VehicleAdapter
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
-import com.agh.wtm.vehiclemanager.fragments.VehicleManagerFragment
 import com.agh.wtm.vehiclemanager.fragments.MainPageFragment
 import com.agh.wtm.vehiclemanager.fragments.RefuellingListFragment
+import com.agh.wtm.vehiclemanager.fragments.VehicleManagerFragment
 import com.agh.wtm.vehiclemanager.model.Vehicle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     var drawerLayout: DrawerLayout? = null
     private var selectVehicleSpinner: Spinner? = null
     private var currentVehicle: Vehicle? = null
+
+    private var vehicleAdapter: VehicleAdapter? = null
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId){
@@ -55,18 +57,19 @@ class MainActivity : AppCompatActivity() {
         dbHelper = VehicleDBHelper(this, VehicleContract.tables)
 //        logVehiclesBtn = findViewById(R.id.log_vehicles)
         drawerLayout = findViewById(R.id.drawer_general_layout)
+        vehicleAdapter = VehicleAdapter(this, 0, getVehicles())
         selectVehicleSpinner = findViewById(R.id.vehicle_spinner_list)
-        selectVehicleSpinner!!.adapter = ArrayAdapter(this, android.R.layout.simple_selectable_list_item, getVehiclesNames())
+        selectVehicleSpinner!!.adapter = vehicleAdapter!!
         selectVehicleSpinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                setVehicle(position + 1)
+                val selectedVehicle: Vehicle = parent!!.getItemAtPosition(position) as Vehicle
+                setVehicle(selectedVehicle)
                 refreshFragment()
             }
         }
         // set to first vehicle on init
-        //setVehicle(1)
         bottom_nav.selectedItemId = R.id.main_page
         bottom_nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         replaceFragment(MainPageFragment(applicationContext))
@@ -88,12 +91,12 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    private fun getVehiclesNames(): List<String> {
-        return dbHelper!!.getAll(Vehicles).map { v -> v.name }
+    private fun getVehicles(): List<Vehicle> {
+        return dbHelper!!.getAll(Vehicles)
     }
 
-    private fun setVehicle(id: Int) {
-        currentVehicle = dbHelper!!.getById(Vehicles, id)
+    private fun setVehicle(vehicle: Vehicle) {
+        currentVehicle = vehicle
     }
 
     private fun refreshFragment() {
@@ -104,11 +107,15 @@ class MainActivity : AppCompatActivity() {
         fragTransaction.commit()
     }
 
-    fun addToSpinner(elem: String) {
-        (selectVehicleSpinner!!.adapter as ArrayAdapter<String>).add(elem)
+    fun addToSpinner(elem: Vehicle) {
+        (selectVehicleSpinner!!.adapter as VehicleAdapter).add(elem)
     }
 
-    fun getCurrentVehicle(): Vehicle {
-        return currentVehicle!!
+    fun removeFromSpinner(elem: Vehicle) {
+        (selectVehicleSpinner!!.adapter as VehicleAdapter).remove(elem)
+    }
+
+    fun getCurrentVehicle(): Vehicle? {
+        return currentVehicle
     }
 }

@@ -57,12 +57,12 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
         val mileage = vehicleMileageInput!!.text.toString().toInt()
 
         val newVehicle = Vehicle(0, vehicleName, Vehicle.VehicleType.valueOf(vehicleType), mileage)
-        dbHelper!!.insert(VehicleContract.VehicleEntry, newVehicle)
+        val newId = dbHelper!!.insert(VehicleContract.VehicleEntry, newVehicle)
         vehicleNameInput!!.text.clear()
         vehicleMileageInput!!.text.clear()
 
         val mainActivity: MainActivity = activity as MainActivity
-        mainActivity.addToSpinner(vehicleName)
+        mainActivity.addToSpinner(newVehicle.copy(id = newId.toInt()))
     }
 
 }

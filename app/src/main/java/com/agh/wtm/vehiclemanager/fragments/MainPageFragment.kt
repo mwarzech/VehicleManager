@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment
 import com.agh.wtm.vehiclemanager.AddFuellingActivity
 import com.agh.wtm.vehiclemanager.MainActivity
 import com.agh.wtm.vehiclemanager.R
+import com.agh.wtm.vehiclemanager.db.VehicleContract
+import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
 import com.agh.wtm.vehiclemanager.model.Vehicle
 
 /**
@@ -35,8 +37,8 @@ class MainPageFragment constructor(private val mCtx: Context) : Fragment() {
         vehicleMileageText = view.findViewById(R.id.vehicle_mileage)
         refuellingBtn = view.findViewById(R.id.add_refuelling_btn)
         val activity: MainActivity? = activity as MainActivity?
-       // currentVehicle = activity!!.getCurrentVehicle()
-        //displayVehicleData()
+        currentVehicle = activity!!.getCurrentVehicle()
+        displayVehicleData()
 
         refuellingBtn!!.setOnClickListener{
             run {
@@ -50,8 +52,10 @@ class MainPageFragment constructor(private val mCtx: Context) : Fragment() {
     }
 
     private fun displayVehicleData() {
-        vehicleNameText!!.text = currentVehicle!!.name
-        vehicleMileageText!!.text = currentVehicle!!.mileage.toString()
+        if (currentVehicle != null) {
+            vehicleNameText!!.text = currentVehicle!!.name
+            vehicleMileageText!!.text = currentVehicle!!.mileage.toString()
+        }
     }
 
 }
