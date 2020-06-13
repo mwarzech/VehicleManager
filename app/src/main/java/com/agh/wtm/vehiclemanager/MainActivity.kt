@@ -91,12 +91,18 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val filter = IntentFilter("com.agh.wtm.vehiclemanager.SEND_STRING")
+        val filter = IntentFilter("com.agh.wtm.vehiclemanager.VEHICLE_DATA")
 
         broadcastReceiver = object : BroadcastReceiver(){
             override fun onReceive(context: Context, intent: Intent) {
-                val vehicleName = intent.getStringExtra("com.agh.wtm.vehiclemanager.VEHICLE_NAME")
-                addToSpinner(vehicleName)
+                //TODO("toString() - nie wiem jak inaczej zrobić, żeby uzyskac String zamiast String?")
+                val vehicleName = intent.getStringExtra("com.agh.wtm.vehiclemanager.VEHICLE_NAME").toString()
+                val vehicleType = intent.getStringExtra("com.agh.wtm.vehiclemanager.VEHICLE_TYPE").toString()
+                val vehicleMileage = intent.getIntExtra("com.agh.wtm.vehiclemanager.VEHICLE_MILEAGE",0)
+                val vehicleID = intent.getIntExtra("com.agh.wtm.vehiclemanager.VEHICLE_ID",0)
+
+                val vehicle = Vehicle(vehicleID,vehicleName, Vehicle.VehicleType.valueOf(vehicleType), vehicleMileage)
+                addToSpinner(vehicle)
             }
         }
         registerReceiver(broadcastReceiver, filter)

@@ -44,9 +44,14 @@ class AddVehicleActivity : AppCompatActivity() {
                 vehicleMileageInput!!.text.clear()
 
 
-                val intent = Intent("com.agh.wtm.vehiclemanager.SEND_STRING")
+                val intent = Intent("com.agh.wtm.vehiclemanager.VEHICLE_DATA")
                 intent.putExtra("com.agh.wtm.vehiclemanager.VEHICLE_NAME", vehicleName)
+                intent.putExtra("com.agh.wtm.vehiclemanager.VEHICLE_TYPE", vehicleType)
+                intent.putExtra("com.agh.wtm.vehiclemanager.VEHICLE_MILEAGE", mileage)
+                intent.putExtra("com.agh.wtm.vehiclemanager.VEHICLE_ID", newId)
                 sendBroadcast(intent)
+
+                //TODO("jak przekazac dobre ID")
 
 
                 /*val mainActivity: MainActivity =  fragment as MainActivity
