@@ -3,6 +3,8 @@ package com.agh.wtm.vehiclemanager.db
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import androidx.core.content.contentValuesOf
+import com.agh.wtm.vehiclemanager.model.Fuelling
 
 class VehicleDBHelper(context: Context, private val tables: Array<VehicleContract.Table<*>>) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
@@ -37,6 +39,14 @@ class VehicleDBHelper(context: Context, private val tables: Array<VehicleContrac
         return generateSequence { if (c.moveToNext()) c else null }
             .map { contract.fromCursor(it) }
             .toList()[0]
+    }
+
+    fun getFuellingsForVehicle(vehicleId: Int): List<Fuelling> {
+        val fuellings = VehicleContract.FuellingEntry
+        val c = writableDatabase.query(fuellings.tableName, null, "vehicle_id=?", arrayOf(vehicleId.toString()), null, null, null)
+        return generateSequence { if (c.moveToNext()) c else null }
+            .map { fuellings.fromCursor(it) }
+            .toList()
     }
 
     companion object {
