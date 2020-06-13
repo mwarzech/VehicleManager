@@ -1,5 +1,10 @@
 package com.agh.wtm.vehiclemanager
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -12,13 +17,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
-import com.agh.wtm.vehiclemanager.fragments.VehicleManagerFragment
 import com.agh.wtm.vehiclemanager.fragments.MainPageFragment
 import com.agh.wtm.vehiclemanager.fragments.RefuellingListFragment
+import com.agh.wtm.vehiclemanager.fragments.VehicleManagerFragment
 import com.agh.wtm.vehiclemanager.model.Vehicle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import com.agh.wtm.vehiclemanager.db.VehicleContract.VehicleEntry as Vehicles
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     var drawerLayout: DrawerLayout? = null
     private var selectVehicleSpinner: Spinner? = null
     private var currentVehicle: Vehicle? = null
+
+    lateinit var broadcastReceiver: BroadcastReceiver
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId){
@@ -65,6 +73,7 @@ class MainActivity : AppCompatActivity() {
                 refreshFragment()
             }
         }
+
         // set to first vehicle on init
         //setVehicle(1)
         bottom_nav.selectedItemId = R.id.main_page
@@ -80,6 +89,22 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
+
+        val filter = IntentFilter("com.agh.wtm.vehiclemanager.SEND_STRING")
+
+        broadcastReceiver = object : BroadcastReceiver(){
+            override fun onReceive(context: Context, intent: Intent) {
+                val vehicleName = intent.getStringExtra("com.agh.wtm.vehiclemanager.VEHICLE_NAME")
+                addToSpinner(vehicleName)
+            }
+        }
+        registerReceiver(broadcastReceiver, filter)
+
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(broadcastReceiver)
+        super.onDestroy()
     }
 
     private fun replaceFragment(fragment: Fragment){
@@ -99,12 +124,12 @@ class MainActivity : AppCompatActivity() {
     private fun refreshFragment() {
         val currentFragment: Fragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)!!
         val fragTransaction: FragmentTransaction =   supportFragmentManager.beginTransaction()
-        fragTransaction.detach(currentFragment);
-        fragTransaction.attach(currentFragment);
+        fragTransaction.detach(currentFragment)
+        fragTransaction.attach(currentFragment)
         fragTransaction.commit()
     }
 
-    fun addToSpinner(elem: String) {
+    fun addToSpinner(elem: String?) {
         (selectVehicleSpinner!!.adapter as ArrayAdapter<String>).add(elem)
     }
 

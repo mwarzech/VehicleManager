@@ -1,17 +1,17 @@
 package com.agh.wtm.vehiclemanager
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
 import com.agh.wtm.vehiclemanager.model.Vehicle
 
-import kotlinx.android.synthetic.main.activity_add_vehicle.*
 
 class AddVehicleActivity : AppCompatActivity() {
 
@@ -42,7 +42,13 @@ class AddVehicleActivity : AppCompatActivity() {
 
                 vehicleNameInput!!.text.clear()
                 vehicleMileageInput!!.text.clear()
-                TODO("Broadcast")
+
+
+                val intent = Intent("com.agh.wtm.vehiclemanager.SEND_STRING")
+                intent.putExtra("com.agh.wtm.vehiclemanager.VEHICLE_NAME", vehicleName)
+                sendBroadcast(intent)
+
+
                 /*val mainActivity: MainActivity =  fragment as MainActivity
                 mainActivity.addToSpinner(vehicleName)*/
             }
