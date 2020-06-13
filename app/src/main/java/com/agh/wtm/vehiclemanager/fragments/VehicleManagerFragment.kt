@@ -4,21 +4,14 @@ package com.agh.wtm.vehiclemanager.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import androidx.fragment.app.Fragment
 import com.agh.wtm.vehiclemanager.AddVehicleActivity
-import com.agh.wtm.vehiclemanager.MainActivity
-
 import com.agh.wtm.vehiclemanager.R
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
-import com.agh.wtm.vehiclemanager.model.Vehicle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
@@ -44,5 +37,4 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
 
         return view
     }
-
 }

@@ -3,13 +3,12 @@ package com.agh.wtm.vehiclemanager.fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.agh.wtm.vehiclemanager.MainActivity
-
 import com.agh.wtm.vehiclemanager.R
 import com.agh.wtm.vehiclemanager.adapters.RefuellingAdapter
 import com.agh.wtm.vehiclemanager.db.VehicleContract
@@ -44,6 +43,9 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
         super.onActivityCreated(savedInstanceState)
     }
 
-    private fun getFuellings() = dbHelper!!.getFuellingsForVehicle(currentVehicle!!.id)
+    private fun getFuellings() =
+        if (currentVehicle != null)
+            dbHelper!!.getFuellingsForVehicle(currentVehicle!!.id)
+        else listOf()
 
 }

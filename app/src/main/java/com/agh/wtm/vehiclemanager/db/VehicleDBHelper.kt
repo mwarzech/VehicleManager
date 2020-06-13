@@ -34,11 +34,11 @@ class VehicleDBHelper(context: Context, private val tables: Array<VehicleContrac
             .toList()
     }
 
-    fun <T> getById(contract: VehicleContract.Table<T>, id: Int): T {
+    fun <T> getById(contract: VehicleContract.Table<T>, id: Int): T? {
         val c = writableDatabase.query(contract.tableName, null, "_id=?", arrayOf(id.toString()), null, null, null)
         return generateSequence { if (c.moveToNext()) c else null }
             .map { contract.fromCursor(it) }
-            .toList()[0]
+            .toList().getOrNull(0)
     }
 
     fun getFuellingsForVehicle(vehicleId: Int): List<Fuelling> {
