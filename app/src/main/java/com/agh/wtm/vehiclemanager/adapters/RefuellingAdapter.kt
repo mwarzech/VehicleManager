@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.agh.wtm.vehiclemanager.R
 import com.agh.wtm.vehiclemanager.model.Fuelling
 import kotlinx.android.synthetic.main.fuelling_item.view.*
+import java.text.SimpleDateFormat
 
 class RefuellingAdapter(private val refuellingList: List<Fuelling>): RecyclerView.Adapter<RefuellingAdapter.RefuellingViewHolder>() {
 
@@ -29,8 +30,9 @@ class RefuellingAdapter(private val refuellingList: List<Fuelling>): RecyclerVie
     override fun onBindViewHolder(holder: RefuellingViewHolder, position: Int) {
         val currentItem = refuellingList[position]
 
-        holder.dateField.text = currentItem.date.toString()
-        holder.priceField.text = currentItem.pricePerLitre.toString()
+        val formatter = SimpleDateFormat("YYYY-mm-dd")
+        holder.dateField.text = formatter.format(currentItem.date)
+        holder.priceField.text = String.format("%.2f zł", currentItem.pricePerLitre)
         holder.amountField.text = currentItem.fuelAmount.toString()
     }
 

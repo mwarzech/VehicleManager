@@ -14,6 +14,7 @@ import com.agh.wtm.vehiclemanager.adapters.RefuellingAdapter
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
 import com.agh.wtm.vehiclemanager.model.Vehicle
+import com.agh.wtm.vehiclemanager.util.EmptyRecyclerView
 import kotlinx.android.synthetic.main.fragment_refuelling_list.*
 
 /**
@@ -23,7 +24,6 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
 
     private var dbHelper: VehicleDBHelper? = null
     private var currentVehicle: Vehicle? = null
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +39,8 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         refuellings_list.adapter = RefuellingAdapter(getFuellings())
         refuellings_list.layoutManager = LinearLayoutManager(mCtx)
+        refuellings_list.setEmptyView(no_refuellings)
+//        (refuellings_list as EmptyRecyclerView).setEmptyView(no_refuellings)
         refuellings_list.setHasFixedSize(true)
         super.onActivityCreated(savedInstanceState)
     }

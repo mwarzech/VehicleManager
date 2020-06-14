@@ -6,39 +6,39 @@
                                    app:cardCornerRadius="4dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="20dp"
+        android:padding="10dp"
         android:layout_height="wrap_content">
-
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/gas_station"/>
         <TextView
             android:id="@+id/refuelling_date_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="24dp"
             android:text="2020-06-01"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/refuelling_price_field"
-            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintStart_toStartOf="parent"
+            android:textSize="18sp" app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
             android:id="@+id/refuelling_price_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
-            android:text="Price" android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/refuelling_date_field"
-            app:layout_constraintEnd_toStartOf="@+id/refuelling_amount_field"
-            app:layout_constraintStart_toEndOf="@+id/refuelling_date_field"/>
+            android:layout_marginStart="24dp" android:text="Price"
+            android:textSize="18sp" android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imageView" app:layout_constraintTop_toBottomOf="@+id/refuelling_date_field"/>
         <TextView
             android:id="@+id/refuelling_amount_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             android:text="Refuelling amount" android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/refuelling_price_field"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/refuelling_price_field"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintBaseline_toBaselineOf="@+id/refuelling_date_field" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/refuelling_date_field"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
