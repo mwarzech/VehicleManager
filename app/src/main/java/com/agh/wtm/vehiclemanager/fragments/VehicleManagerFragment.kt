@@ -8,11 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.agh.wtm.vehiclemanager.AddVehicleActivity
 import com.agh.wtm.vehiclemanager.R
+import com.agh.wtm.vehiclemanager.adapters.ProductListAdapter
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
+import com.agh.wtm.vehiclemanager.model.Vehicle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_vehicle_manager.*
+import com.agh.wtm.vehiclemanager.db.VehicleContract.VehicleEntry as Vehicles
+
 
 /**
  * A simple [Fragment] subclass.
@@ -21,6 +27,7 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
 
     private var addVehicleFab: FloatingActionButton? = null
     private var dbHelper: VehicleDBHelper? = null
+    private var productListAdapter: ProductListAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,5 +43,22 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
         }
 
         return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        productListAdapter = ProductListAdapter(getVehicles())
+        /*productListAdapter.setOnItemClickListener(object : ProductListAdapter.OnItemClickListener(){
+            fun onDeleteClick
+        })*/
+        vehicle_list.adapter = productListAdapter
+        vehicle_list.layoutManager = LinearLayoutManager(mCtx)
+
+        vehicle_list.hasFixedSize()
+
+        super.onActivityCreated(savedInstanceState)
+    }
+
+    private fun getVehicles(): List<Vehicle> {
+        return dbHelper!!.getAll(Vehicles)
     }
 }
