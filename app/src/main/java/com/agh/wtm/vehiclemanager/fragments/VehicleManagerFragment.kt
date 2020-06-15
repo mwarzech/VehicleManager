@@ -47,9 +47,12 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         productListAdapter = ProductListAdapter(getVehicles())
-        /*productListAdapter.setOnItemClickListener(object : ProductListAdapter.OnItemClickListener(){
-            fun onDeleteClick
-        })*/
+        productListAdapter!!.setOnItemClickListener(object : ProductListAdapter.OnItemClickListener {
+            override fun onDeleteClick(position: Int) {
+                val id = productListAdapter!!.getIdOfPosition(position)
+                dbHelper!!.deleteById(Vehicles, id)
+            }
+        })
         vehicle_list.adapter = productListAdapter
         vehicle_list.layoutManager = LinearLayoutManager(mCtx)
 

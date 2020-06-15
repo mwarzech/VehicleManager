@@ -46,6 +46,7 @@ class ProductListAdapter(private val vehicleList:List<Vehicle>): RecyclerView.Ad
 
     override fun getItemCount() = vehicleList.size
 
+    fun getIdOfPosition(position: Int) = vehicleList[position].id
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehicleViewHolder {
         val itemView = LayoutInflater
