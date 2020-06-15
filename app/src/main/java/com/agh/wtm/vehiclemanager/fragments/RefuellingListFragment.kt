@@ -40,7 +40,6 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
         refuellings_list.adapter = RefuellingAdapter(getFuellings())
         refuellings_list.layoutManager = LinearLayoutManager(mCtx)
         refuellings_list.setEmptyView(no_refuellings)
-//        (refuellings_list as EmptyRecyclerView).setEmptyView(no_refuellings)
         refuellings_list.setHasFixedSize(true)
         super.onActivityCreated(savedInstanceState)
     }

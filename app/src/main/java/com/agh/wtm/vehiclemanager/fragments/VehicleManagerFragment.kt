@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.agh.wtm.vehiclemanager.AddVehicleActivity
+import com.agh.wtm.vehiclemanager.MainActivity
 import com.agh.wtm.vehiclemanager.R
 import com.agh.wtm.vehiclemanager.adapters.VehicleListAdapter
 import com.agh.wtm.vehiclemanager.db.VehicleContract
@@ -47,17 +48,18 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         vehicleListAdapter = VehicleListAdapter(getVehicles())
-        vehicle_list.layoutManager = LinearLayoutManager(mCtx)
-        vehicle_list.setEmptyView(no_vehicles)
         vehicleListAdapter!!.setOnItemClickListener(object : VehicleListAdapter.OnItemClickListener {
             override fun onDeleteClick(position: Int) {
-                val id = vehicleListAdapter!!.getIdOfPosition(position)
-                dbHelper!!.deleteById(Vehicles, id)
+                val vehicleToRemove: Vehicle = vehicleListAdapter!!.getElementOnPosition(position)
+                dbHelper!!.deleteById(Vehicles, vehicleToRemove.id)
+                vehicleListAdapter!!.vehicleList = getVehicles()
+                (activity as MainActivity).removeFromSpinner(vehicleToRemove)
                 vehicleListAdapter!!.notifyItemRemoved(position)
             }
         })
         vehicle_list.adapter = vehicleListAdapter
         vehicle_list.layoutManager = LinearLayoutManager(mCtx)
+        vehicle_list.setEmptyView(no_vehicles)
 
         vehicle_list.hasFixedSize()
 

@@ -12,7 +12,7 @@ import com.agh.wtm.vehiclemanager.model.Vehicle
 import kotlinx.android.synthetic.main.vehicle_list_row.view.*
 
 
-class VehicleListAdapter(private val vehicleList:List<Vehicle>): RecyclerView.Adapter<VehicleListAdapter.VehicleViewHolder>() {
+class VehicleListAdapter(var vehicleList:List<Vehicle>): RecyclerView.Adapter<VehicleListAdapter.VehicleViewHolder>() {
 
     private var mListener: OnItemClickListener? = null
 
@@ -45,7 +45,7 @@ class VehicleListAdapter(private val vehicleList:List<Vehicle>): RecyclerView.Ad
 
     override fun getItemCount() = vehicleList.size
 
-    fun getIdOfPosition(position: Int) = vehicleList[position].id
+    fun getElementOnPosition(position: Int): Vehicle = vehicleList[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehicleViewHolder {
         val itemView = LayoutInflater
