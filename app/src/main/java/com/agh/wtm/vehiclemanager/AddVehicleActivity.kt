@@ -7,9 +7,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
+import com.agh.wtm.vehiclemanager.fragments.VehicleManagerFragment
 import com.agh.wtm.vehiclemanager.model.Vehicle
 
 
@@ -20,6 +22,7 @@ class AddVehicleActivity : AppCompatActivity() {
     private var vehicleTypeInput: Spinner? = null
     private var vehicleMileageInput: EditText? = null
     private var dbHelper: VehicleDBHelper? = null
+    private var returnBtn: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,7 @@ class AddVehicleActivity : AppCompatActivity() {
         vehicleNameInput = findViewById(R.id.vehicle_name_field)
         vehicleTypeInput = findViewById(R.id.vehicle_type_input)
         vehicleMileageInput = findViewById(R.id.mileage_input_field)
+        returnBtn = findViewById(R.id.btnBack)
         vehicleTypeInput!!.adapter = ArrayAdapter(this, android.R.layout.simple_selectable_list_item, Vehicle.VehicleType.values())
         dbHelper = VehicleDBHelper(this, VehicleContract.tables)
 
@@ -47,6 +51,14 @@ class AddVehicleActivity : AppCompatActivity() {
                 intent.putExtra("com.agh.wtm.vehiclemanager.VEHICLE", newVehicle.copy(id = newId.toInt()))
                 sendBroadcast(intent)
             }
+        }
+        returnBtn!!.setOnClickListener{
+            //TODO("Nie działa powrot do fragmentu")
+            val fragment = VehicleManagerFragment(applicationContext)
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragmentContainer, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
     }
 

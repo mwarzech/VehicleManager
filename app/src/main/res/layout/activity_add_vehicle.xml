@@ -7,75 +7,160 @@
     android:layout_height="match_parent"
     tools:context=".AddVehicleActivity">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintDimensionRatio="H, 1:6"
-        android:text="Enter name:"
-        app:layout_constraintTop_toTopOf="parent" android:id="@+id/vehicle_name" android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="32dp" android:layout_marginTop="250dp"
-        android:textAlignment="viewEnd"
-        app:layout_constraintEnd_toStartOf="@+id/vehicle_name_field"/>
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/vehicle_name_field" android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/vehicle_name"
-        android:layout_marginStart="32dp" app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/vehicle_name" android:hint="Vehicle name"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        app:layout_constraintDimensionRatio="H, 1:6"
-        android:text="Type:"
-        android:ems="10"
-        android:textAlignment="viewEnd"
-        android:id="@+id/vehicle_type_field"
-        android:textSize="14sp" app:layout_constraintTop_toBottomOf="@+id/vehicle_name"
-        android:layout_marginTop="32dp" app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="32dp" app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toStartOf="@+id/vehicle_type_input"/>
-    <Spinner
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="type"
-        android:ems="10"
-        android:id="@+id/vehicle_type_input"
-        android:textSize="14sp" app:layout_constraintStart_toEndOf="@+id/vehicle_type_field"
-        android:layout_marginStart="32dp" app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/vehicle_type_field"/>
-    <TextView
-        android:text="Mileage:"
-        android:layout_width="0dp"
-        app:layout_constraintDimensionRatio="H, 1:6"
-        android:layout_height="wrap_content"
-        android:textAlignment="viewEnd"
-        android:id="@+id/mileage_field" android:textSize="14sp" app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="32dp" android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/vehicle_type_field" app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toStartOf="@+id/mileage_input_field"/>
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/mileage_input_field"
-        android:textSize="14sp" app:layout_constraintStart_toEndOf="@+id/mileage_field"
-        android:layout_marginStart="32dp" app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="32dp" app:layout_constraintBaseline_toBaselineOf="@+id/mileage_field"
-        app:layout_constraintHorizontal_bias="0.5" android:hint="100000"/>
-    <Button
-        android:text="Add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/add_vehicle_btn" app:layout_constraintStart_toStartOf="parent"
+    <LinearLayout
+        android:id="@+id/add_vehicle_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_arrow_back_black"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/productDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1.2"
+            android:text="Add vehicle"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/vehicle_name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_vehicle_header">
+
+        <TextView
+            android:id="@+id/vehicle_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.81"
+
+            android:text="Enter name:"
+            android:textAlignment="viewEnd"
+            android:textSize="14sp"
+            app:layout_constraintDimensionRatio="H, 1:6" />
+
+        <EditText
+            android:id="@+id/vehicle_name_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Vehicle name"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/vehicle_name"
+            app:layout_constraintHorizontal_bias="0.5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/vehicle_type_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:paddingTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_name_layout">
+
+        <TextView
+            android:id="@+id/vehicle_type_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.81"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Type:"
+            android:textAlignment="viewEnd"
+            android:textSize="14sp"
+            app:layout_constraintDimensionRatio="H, 1:6"
+            app:layout_constraintHorizontal_bias="0.5"
+            />
+
+        <Spinner
+            android:id="@+id/vehicle_type_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="type"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/vehicle_type_field"
+            app:layout_constraintHorizontal_bias="0.5"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/vehicle_mileage_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_type_layout">
+
+        <TextView
+            android:text="Mileage:"
+            android:layout_width="0dp"
+            android:layout_weight="0.81"
+            app:layout_constraintDimensionRatio="H, 1:6"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewEnd"
+            android:id="@+id/mileage_field"
+            android:textSize="14sp"
+            app:layout_constraintHorizontal_bias="0.5" />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/mileage_input_field"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/mileage_field"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:hint="100000"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_vehicle_btn"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_plus"
+        android:text="Add vehicle"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintTop_toBottomOf="@+id/mileage_field" android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_mileage_layout" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
