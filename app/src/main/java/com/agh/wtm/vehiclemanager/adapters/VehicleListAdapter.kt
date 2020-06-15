@@ -4,7 +4,6 @@ package com.agh.wtm.vehiclemanager.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +12,7 @@ import com.agh.wtm.vehiclemanager.model.Vehicle
 import kotlinx.android.synthetic.main.vehicle_list_row.view.*
 
 
-class ProductListAdapter(private val vehicleList:List<Vehicle>): RecyclerView.Adapter<ProductListAdapter.VehicleViewHolder>() {
+class VehicleListAdapter(private val vehicleList:List<Vehicle>): RecyclerView.Adapter<VehicleListAdapter.VehicleViewHolder>() {
 
     private var mListener: OnItemClickListener? = null
 

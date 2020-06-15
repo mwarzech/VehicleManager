@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.agh.wtm.vehiclemanager.AddVehicleActivity
 import com.agh.wtm.vehiclemanager.R
-import com.agh.wtm.vehiclemanager.adapters.ProductListAdapter
+import com.agh.wtm.vehiclemanager.adapters.VehicleListAdapter
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
 import com.agh.wtm.vehiclemanager.model.Vehicle
@@ -27,7 +27,7 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
 
     private var addVehicleFab: FloatingActionButton? = null
     private var dbHelper: VehicleDBHelper? = null
-    private var productListAdapter: ProductListAdapter? = null
+    private var vehicleListAdapter: VehicleListAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,14 +46,17 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        productListAdapter = ProductListAdapter(getVehicles())
-        productListAdapter!!.setOnItemClickListener(object : ProductListAdapter.OnItemClickListener {
+        vehicleListAdapter = VehicleListAdapter(getVehicles())
+        vehicle_list.layoutManager = LinearLayoutManager(mCtx)
+        vehicle_list.setEmptyView(no_vehicles)
+        vehicleListAdapter!!.setOnItemClickListener(object : VehicleListAdapter.OnItemClickListener {
             override fun onDeleteClick(position: Int) {
-                val id = productListAdapter!!.getIdOfPosition(position)
+                val id = vehicleListAdapter!!.getIdOfPosition(position)
                 dbHelper!!.deleteById(Vehicles, id)
+                vehicleListAdapter!!.notifyItemRemoved(position)
             }
         })
-        vehicle_list.adapter = productListAdapter
+        vehicle_list.adapter = vehicleListAdapter
         vehicle_list.layoutManager = LinearLayoutManager(mCtx)
 
         vehicle_list.hasFixedSize()
