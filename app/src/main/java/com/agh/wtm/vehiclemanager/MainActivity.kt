@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var broadcastReceiver: BroadcastReceiver
 
+    private var mFragment: Fragment? = null
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId){
             R.id.main_page -> {
@@ -94,6 +96,9 @@ class MainActivity : AppCompatActivity() {
             override fun onReceive(context: Context, intent: Intent) {
                 val vehicle = intent.getParcelableExtra<Vehicle>("com.agh.wtm.vehiclemanager.VEHICLE")
                 addToSpinner(vehicle)
+                if(mFragment != null && mFragment is VehicleManagerFragment) {
+                    (mFragment as VehicleManagerFragment).updateVehicleList()
+                }
             }
         }
         registerReceiver(broadcastReceiver, filter)
@@ -107,6 +112,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun replaceFragment(fragment: Fragment){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
+        mFragment = fragment
         fragmentTransaction.replace(R.id.fragmentContainer, fragment)
         fragmentTransaction.commit()
     }

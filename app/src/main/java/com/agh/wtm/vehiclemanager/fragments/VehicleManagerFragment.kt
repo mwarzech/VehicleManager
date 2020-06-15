@@ -66,6 +66,11 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
         super.onActivityCreated(savedInstanceState)
     }
 
+    public fun updateVehicleList() {
+        vehicleListAdapter!!.vehicleList = getVehicles()
+        vehicleListAdapter!!.notifyDataSetChanged()
+    }
+
     private fun getVehicles(): List<Vehicle> {
         return dbHelper!!.getAll(Vehicles)
     }

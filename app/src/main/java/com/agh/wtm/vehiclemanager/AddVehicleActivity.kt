@@ -2,10 +2,8 @@ package com.agh.wtm.vehiclemanager
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -37,6 +35,12 @@ class AddVehicleActivity : AppCompatActivity() {
 
         addVehicleBtn!!.setOnClickListener {
             run {
+                if(vehicleNameInput!!.text.toString().isEmpty() ||
+                    vehicleMileageInput!!.text.toString().isEmpty()) {
+                    Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show()
+                    return@run
+                }
+
                 val vehicleName = vehicleNameInput!!.text.toString()
                 val vehicleType = vehicleTypeInput!!.selectedItem.toString()
                 val mileage = vehicleMileageInput!!.text.toString().toInt()
@@ -50,11 +54,11 @@ class AddVehicleActivity : AppCompatActivity() {
                 val intent = Intent("com.agh.wtm.vehiclemanager.VEHICLE_DATA")
                 intent.putExtra("com.agh.wtm.vehiclemanager.VEHICLE", newVehicle.copy(id = newId.toInt()))
                 sendBroadcast(intent)
+                finish()
             }
         }
         returnBtn!!.setOnClickListener{
-            setResult(RESULT_OK);
-            finish();
+            finish()
         }
     }
 
