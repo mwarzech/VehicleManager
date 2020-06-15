@@ -53,12 +53,8 @@ class AddVehicleActivity : AppCompatActivity() {
             }
         }
         returnBtn!!.setOnClickListener{
-            //TODO("Nie działa powrot do fragmentu")
-            val fragment = VehicleManagerFragment(applicationContext)
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragmentContainer, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            setResult(RESULT_OK);
+            finish();
         }
     }
 
