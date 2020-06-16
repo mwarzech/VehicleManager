@@ -60,7 +60,6 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
         vehicle_list.adapter = vehicleListAdapter
         vehicle_list.layoutManager = LinearLayoutManager(mCtx)
         vehicle_list.setEmptyView(no_vehicles)
-
         vehicle_list.hasFixedSize()
 
         super.onActivityCreated(savedInstanceState)

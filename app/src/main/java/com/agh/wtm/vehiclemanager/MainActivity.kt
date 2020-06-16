@@ -102,6 +102,8 @@ class MainActivity : AppCompatActivity() {
         }
         registerReceiver(broadcastReceiver, filter)
 
+
+
     }
 
     override fun onDestroy() {

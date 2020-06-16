@@ -27,6 +27,7 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
     private var dbHelper: VehicleDBHelper? = null
     private var currentVehicle: Vehicle? = null
     private var addFuellingFab: FloatingActionButton? = null
+    private var refuellingListAdapter: RefuellingAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,8 +47,13 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
             }
 
         }
-
         return view
+    }
+
+    fun updateFuellingList(){
+        refuellingListAdapter!!.refuellingList = getFuellings()
+        refuellingListAdapter!!.notifyDataSetChanged()
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -2,12 +2,12 @@ package com.agh.wtm.vehiclemanager
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
+import androidx.fragment.app.Fragment
+import com.agh.wtm.vehiclemanager.adapters.RefuellingAdapter
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
+import com.agh.wtm.vehiclemanager.fragments.RefuellingListFragment
 import com.agh.wtm.vehiclemanager.model.Fuelling
 import java.util.*
 import com.agh.wtm.vehiclemanager.db.VehicleContract.FuellingEntry as Fuellings
@@ -21,6 +21,7 @@ class AddFuellingActivity : AppCompatActivity() {
     private var addFuellingBtn: Button? = null
     private var returnBtn: Button? = null
     private var dbHelper: VehicleDBHelper? = null
+    private var refuellingListFragment: RefuellingListFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,15 @@ class AddFuellingActivity : AppCompatActivity() {
 
         addFuellingBtn!!.setOnClickListener {
             run {
+                if (fuellingAmountInput!!.text.toString().isEmpty() ||
+                        fuellingPriceInput!!.text.toString().isEmpty() ||
+                        fuellingMileageInput!!.text.toString().isEmpty()){
+                    Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show()
+                    return@run
+                }
+
                 addRefuelling(intent.getIntExtra("carId", 0))
+                /*refuellingListFragment!!.updateFuellingList()*/
             }
         }
 
@@ -46,6 +55,8 @@ class AddFuellingActivity : AppCompatActivity() {
             finish()
         }
     }
+
+
 
     private fun addRefuelling(carId: Int) {
         val fuellingAmount: Double = fuellingAmountInput!!.text.toString().toDouble()

@@ -10,7 +10,7 @@ import com.agh.wtm.vehiclemanager.model.Fuelling
 import kotlinx.android.synthetic.main.fuelling_item.view.*
 import java.text.SimpleDateFormat
 
-class RefuellingAdapter(private val refuellingList: List<Fuelling>): RecyclerView.Adapter<RefuellingAdapter.RefuellingViewHolder>() {
+class RefuellingAdapter(var refuellingList: List<Fuelling>): RecyclerView.Adapter<RefuellingAdapter.RefuellingViewHolder>() {
 
     class RefuellingViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val dateField: TextView = itemView.refuelling_date_field

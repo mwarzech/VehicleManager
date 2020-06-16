@@ -25,14 +25,14 @@ class VehicleAdapter(context: Context, @LayoutRes private val layoutResource: In
     private fun initView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val cView: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.vehicle_spinner_row, parent, false)
 
-        val idLabel: TextView = cView.spinner_vehicle_id
+        val initialLetter: TextView = cView.spinner_letter
         val nameLabel: TextView = cView.spinner_vehicle_name
         val mileageLabel: TextView = cView.spinner_vehicle_mileage
 
         val currentVehicle: Vehicle? = getItem(position)
 
         if (currentVehicle != null) {
-            idLabel.text = currentVehicle!!.id.toString()
+            initialLetter.text = currentVehicle!!.name.first().toString()
             nameLabel.text = currentVehicle!!.name
             mileageLabel.text = currentVehicle!!.mileage.toString()
         }

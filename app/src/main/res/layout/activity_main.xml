@@ -13,16 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--        &lt;!&ndash; Top bar &ndash;&gt;-->
-<!--        <androidx.appcompat.widget.LinearLayoutCompat-->
-<!--            android:id="@+id/linearLayout"-->
-<!--            style="?attr/buttonBarStyle"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="80dp"-->
-<!--            android:background="@color/colorPrimary"-->
-<!--            android:orientation="horizontal"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
         <!-- Spinner -->
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,9 +27,10 @@
                 android:id="@+id/vehicle_spinner_wrapper"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:background="@drawable/spinner_bg"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,11 +39,13 @@
                 <Spinner
                     android:id="@+id/vehicle_spinner_list"
                     android:layout_width="0dp"
-                    android:layout_height="36dp"
+                    android:layout_height="45dp"
                     android:text="type"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
