@@ -32,7 +32,7 @@ class RefuellingAdapter(var refuellingList: List<Fuelling>): RecyclerView.Adapte
     override fun onBindViewHolder(holder: RefuellingViewHolder, position: Int) {
         val currentItem = refuellingList[position]
 
-        val formatter = SimpleDateFormat("YYYY-mm-dd")
+        val formatter = SimpleDateFormat("YYYY-MM-dd")
         holder.dateField.text = formatter.format(currentItem.date)
         holder.priceField.text = String.format("%.2f zł", currentItem.pricePerLitre)
         holder.amountField.text = currentItem.fuelAmount.toString()
