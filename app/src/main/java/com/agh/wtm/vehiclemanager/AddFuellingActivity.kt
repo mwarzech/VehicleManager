@@ -3,8 +3,6 @@ package com.agh.wtm.vehiclemanager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import androidx.fragment.app.Fragment
-import com.agh.wtm.vehiclemanager.adapters.RefuellingAdapter
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
 import com.agh.wtm.vehiclemanager.fragments.RefuellingListFragment
