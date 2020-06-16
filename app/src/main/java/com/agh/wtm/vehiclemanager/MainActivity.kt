@@ -27,12 +27,9 @@ import com.agh.wtm.vehiclemanager.db.VehicleContract.VehicleEntry as Vehicles
 class MainActivity : AppCompatActivity() {
 
     var dbHelper: VehicleDBHelper? = null
-    var logVehiclesBtn: Button? = null
     var drawerLayout: DrawerLayout? = null
     private var selectVehicleSpinner: Spinner? = null
     private var currentVehicle: Vehicle? = null
-
-    private var vehicleAdapter: VehicleAdapter? = null
 
     lateinit var broadcastReceiver: BroadcastReceiver
 
@@ -61,17 +58,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         dbHelper = VehicleDBHelper(this, VehicleContract.tables)
-//        logVehiclesBtn = findViewById(R.id.log_vehicles)
         drawerLayout = findViewById(R.id.drawer_general_layout)
-        vehicleAdapter = VehicleAdapter(this, 0, getVehicles())
-
-        if(vehicleAdapter!!.isEmpty){
-            val intent = Intent(this, AddVehicleActivity::class.java)
-            intent.putExtra("emptyVehicleList", true)
-            startActivity(intent)
-        }
         selectVehicleSpinner = findViewById(R.id.vehicle_spinner_list)
-        selectVehicleSpinner!!.adapter = vehicleAdapter!!
+
+        createNewVehicleAdapter()
+
         selectVehicleSpinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
@@ -85,21 +76,12 @@ class MainActivity : AppCompatActivity() {
         bottom_nav.selectedItemId = R.id.main_page
         bottom_nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         replaceFragment(MainPageFragment(applicationContext))
-//        logVehiclesBtn!!.setOnClickListener {
-//            run {
-//                val vehicles = dbHelper!!.getAll(VehicleContract.VehicleEntry)
-//                vehicles.forEach {
-//                    Log.d("Vehicle", "Id: " + it.id + ", name: " + it.name + ", type: " + it.type + ", mileage: " + it.mileage)
-//                }
-//            }
-//        }
 
         val filter = IntentFilter("com.agh.wtm.vehiclemanager.VEHICLE_DATA")
 
         broadcastReceiver = object : BroadcastReceiver(){
             override fun onReceive(context: Context, intent: Intent) {
-                val vehicle = intent.getParcelableExtra<Vehicle>("com.agh.wtm.vehiclemanager.VEHICLE")
-                addToSpinner(vehicle)
+                updateSpinner()
                 var fragment: Fragment? = supportFragmentManager.fragments.last()
                 if(fragment != null && fragment is VehicleManagerFragment) {
                     fragment.updateVehicleList()
@@ -107,9 +89,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
         registerReceiver(broadcastReceiver, filter)
+    }
 
+    private fun createNewVehicleAdapter() {
+        val vehicleAdapter = VehicleAdapter(this, 0, getVehicles())
 
-
+        if(vehicleAdapter!!.isEmpty){
+            val intent = Intent(this, AddVehicleActivity::class.java)
+            intent.putExtra("emptyVehicleList", true)
+            startActivity(intent)
+        }
+        selectVehicleSpinner!!.adapter = vehicleAdapter!!
     }
 
     override fun onDestroy() {
@@ -139,12 +129,8 @@ class MainActivity : AppCompatActivity() {
         fragTransaction.commit()
     }
 
-    fun addToSpinner(elem: Vehicle) {
-        (selectVehicleSpinner!!.adapter as VehicleAdapter).add(elem)
-    }
-
-    fun removeFromSpinner(elem: Vehicle) {
-        (selectVehicleSpinner!!.adapter as VehicleAdapter).remove(elem)
+    fun updateSpinner() {
+        createNewVehicleAdapter()
     }
 
     fun getCurrentVehicle(): Vehicle? {

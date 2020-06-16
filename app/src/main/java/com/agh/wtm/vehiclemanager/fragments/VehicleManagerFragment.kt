@@ -53,7 +53,7 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
                 val vehicleToRemove: Vehicle = vehicleListAdapter!!.getElementOnPosition(position)
                 dbHelper!!.deleteById(Vehicles, vehicleToRemove.id)
                 vehicleListAdapter!!.vehicleList = getVehicles()
-                (activity as MainActivity).removeFromSpinner(vehicleToRemove)
+                (activity as MainActivity).updateSpinner()
                 vehicleListAdapter!!.notifyItemRemoved(position)
             }
         })

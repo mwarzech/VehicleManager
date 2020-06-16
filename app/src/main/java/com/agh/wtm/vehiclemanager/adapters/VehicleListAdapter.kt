@@ -1,7 +1,5 @@
 package com.agh.wtm.vehiclemanager.adapters
 
-
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.agh.wtm.vehiclemanager.R
 import com.agh.wtm.vehiclemanager.model.Vehicle
 import kotlinx.android.synthetic.main.vehicle_list_row.view.*
-
 
 class VehicleListAdapter(var vehicleList:List<Vehicle>): RecyclerView.Adapter<VehicleListAdapter.VehicleViewHolder>() {
 

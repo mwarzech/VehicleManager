@@ -7,12 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".AddVehicleActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/add_vehicle_header"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:weightSum="2"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
@@ -25,23 +24,28 @@
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:layout_weight="0.4"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/ic_arrow_back_black"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/vehicleDetails"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1.2"
             android:text="Add vehicle"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
             android:textSize="24sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/vehicle_name_layout"
@@ -61,7 +65,7 @@
             android:text="Enter name:"
             android:textAlignment="center"
             android:textSize="14sp"
-            app:layout_constraintDimensionRatio="H, 1:6" />
+            app:layout_constraintDimensionRatio="H, 1:6"/>
         <EditText
             android:id="@+id/vehicle_name_field"
             android:layout_width="0dp"
@@ -70,7 +74,7 @@
             android:hint="Vehicle name"
             android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/vehicle_name"
-            app:layout_constraintHorizontal_bias="0.5" />
+            app:layout_constraintHorizontal_bias="0.5"/>
     </LinearLayout>
 
     <LinearLayout
@@ -96,7 +100,7 @@
             android:textSize="14sp"
             app:layout_constraintDimensionRatio="H, 1:6"
             app:layout_constraintHorizontal_bias="0.5"
-            />
+        />
 
         <Spinner
             android:id="@+id/vehicle_type_input"
@@ -130,7 +134,7 @@
             android:textAlignment="center"
             android:id="@+id/mileage_field"
             android:textSize="14sp"
-            app:layout_constraintHorizontal_bias="0.5" />
+            app:layout_constraintHorizontal_bias="0.5"/>
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -155,9 +159,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vehicle_mileage_layout" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_mileage_layout"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
