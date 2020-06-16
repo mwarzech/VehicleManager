@@ -60,8 +60,7 @@ class AddVehicleActivity : AppCompatActivity() {
                 vehicleNameInput!!.text.clear()
                 vehicleMileageInput!!.text.clear()
 
-                val intent = Intent("com.agh.wtm.vehiclemanager.VEHICLE_DATA")
-                intent.putExtra("com.agh.wtm.vehiclemanager.VEHICLE", newVehicle.copy(id = newId.toInt()))
+                val intent = Intent("com.agh.wtm.vehiclemanager.UPDATE_SPINNER")
                 sendBroadcast(intent)
                 finish()
             }

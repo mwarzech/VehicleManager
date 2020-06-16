@@ -1,11 +1,10 @@
 package com.agh.wtm.vehiclemanager
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
-import com.agh.wtm.vehiclemanager.fragments.RefuellingListFragment
 import com.agh.wtm.vehiclemanager.model.Fuelling
 import java.util.*
 import com.agh.wtm.vehiclemanager.db.VehicleContract.FuellingEntry as Fuellings
@@ -19,7 +18,6 @@ class AddFuellingActivity : AppCompatActivity() {
     private var addFuellingBtn: Button? = null
     private var returnBtn: Button? = null
     private var dbHelper: VehicleDBHelper? = null
-    private var refuellingListFragment: RefuellingListFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +43,7 @@ class AddFuellingActivity : AppCompatActivity() {
                 }
 
                 addRefuelling(intent.getIntExtra("carId", 0))
-                /*refuellingListFragment!!.updateFuellingList()*/
+                finish()
             }
         }
 
@@ -73,6 +71,5 @@ class AddFuellingActivity : AppCompatActivity() {
         )
 
         dbHelper!!.insert(Fuellings, fuelling)
-        finish()
     }
 }

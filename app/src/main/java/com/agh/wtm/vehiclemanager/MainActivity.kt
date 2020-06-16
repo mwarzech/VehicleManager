@@ -7,7 +7,6 @@ import android.content.IntentFilter
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.Button
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private var selectVehicleSpinner: Spinner? = null
     private var currentVehicle: Vehicle? = null
 
-    lateinit var broadcastReceiver: BroadcastReceiver
+    private lateinit var broadcastUpdateSpinner: BroadcastReceiver
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId){
@@ -77,9 +76,8 @@ class MainActivity : AppCompatActivity() {
         bottom_nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         replaceFragment(MainPageFragment(applicationContext))
 
-        val filter = IntentFilter("com.agh.wtm.vehiclemanager.VEHICLE_DATA")
-
-        broadcastReceiver = object : BroadcastReceiver(){
+        val updateSpinnerFilter = IntentFilter("com.agh.wtm.vehiclemanager.UPDATE_SPINNER")
+        broadcastUpdateSpinner = object : BroadcastReceiver(){
             override fun onReceive(context: Context, intent: Intent) {
                 updateSpinner()
                 var fragment: Fragment? = supportFragmentManager.fragments.last()
@@ -88,7 +86,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        registerReceiver(broadcastReceiver, filter)
+        registerReceiver(broadcastUpdateSpinner, updateSpinnerFilter)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshFragment()
     }
 
     private fun createNewVehicleAdapter() {
@@ -103,7 +106,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        unregisterReceiver(broadcastReceiver)
+        unregisterReceiver(broadcastUpdateSpinner)
         super.onDestroy()
     }
 
@@ -123,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshFragment() {
         val currentFragment: Fragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)!!
-        val fragTransaction: FragmentTransaction =   supportFragmentManager.beginTransaction()
+        val fragTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         fragTransaction.detach(currentFragment)
         fragTransaction.attach(currentFragment)
         fragTransaction.commit()
