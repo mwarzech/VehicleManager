@@ -97,12 +97,12 @@ class MainActivity : AppCompatActivity() {
     private fun createNewVehicleAdapter() {
         val vehicleAdapter = VehicleAdapter(this, 0, getVehicles())
 
-        if(vehicleAdapter!!.isEmpty){
+        if(vehicleAdapter.isEmpty){
             val intent = Intent(this, AddVehicleActivity::class.java)
             intent.putExtra("emptyVehicleList", true)
             startActivity(intent)
         }
-        selectVehicleSpinner!!.adapter = vehicleAdapter!!
+        selectVehicleSpinner!!.adapter = vehicleAdapter
     }
 
     override fun onDestroy() {

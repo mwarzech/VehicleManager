@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
 import com.agh.wtm.vehiclemanager.model.Fuelling
+import com.agh.wtm.vehiclemanager.model.Vehicle
 import kotlinx.android.synthetic.main.activity_add_fuelling.*
 import java.util.*
 import com.agh.wtm.vehiclemanager.db.VehicleContract.FuellingEntry as Fuellings
@@ -49,12 +50,12 @@ class AddFuellingActivity : AppCompatActivity() {
                     return@run
                 }
 
-                if (fuellingMileageInput!!.text.toString().toInt() < vehicle!!.mileage){
+                if (fuellingMileageInput!!.text.toString().toInt() < vehicle.mileage){
                     Toast.makeText(this, "Fuelling mileage should be greater than vehicle mileage", Toast.LENGTH_LONG).show()
                     return@run
                 }
 
-                addRefuelling(vehicleId)
+                addRefuelling(vehicle)
                 dbHelper!!.update(Vehicles, vehicle.copy(mileage = fuellingMileageInput!!.text.toString().toInt()))
                 val intent = Intent("com.agh.wtm.vehiclemanager.UPDATE_SPINNER")
                 sendBroadcast(intent)
@@ -69,20 +70,19 @@ class AddFuellingActivity : AppCompatActivity() {
 
 
 
-    private fun addRefuelling(carId: Int) {
+    private fun addRefuelling(vehicle: Vehicle) {
         val fuellingAmount: Double = fuellingAmountInput!!.text.toString().toDouble()
         val fuellingPrice: Double = fuellingPriceInput!!.text.toString().toDouble()
         val fuellingMileage: Int = fuellingMileageInput!!.text.toString().toInt()
         val fuelType: String = fuelTypeInput!!.selectedItem.toString()
 
         val fuelling = Fuelling(
-            0,
-            carId,
-            Date(),
-            fuellingAmount,
-            fuellingPrice,
-            Fuelling.FuelType.valueOf(fuelType),
-            fuellingMileage
+            vehicleId = vehicle.getId(),
+            fuelAmount = fuellingAmount,
+            pricePerLitre = fuellingPrice,
+            fuelType = Fuelling.FuelType.valueOf(fuelType),
+            lastFuellingMileage = vehicle.mileage,
+            mileage = fuellingMileage
         )
 
         dbHelper!!.insert(Fuellings, fuelling)

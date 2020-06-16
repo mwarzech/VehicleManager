@@ -15,6 +15,7 @@ import com.agh.wtm.vehiclemanager.MainActivity
 import com.agh.wtm.vehiclemanager.R
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
+import com.agh.wtm.vehiclemanager.logic.RefuellingStatistics
 import com.agh.wtm.vehiclemanager.model.Vehicle
 
 /**
@@ -26,6 +27,7 @@ class MainPageFragment constructor(private val mCtx: Context) : Fragment() {
     private var vehicleMileageText: TextView? = null
     private var currentVehicle: Vehicle? = null
     private var refuellingBtn: Button? = null
+    private var refuellingStatistics: RefuellingStatistics? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +40,7 @@ class MainPageFragment constructor(private val mCtx: Context) : Fragment() {
         refuellingBtn = view.findViewById(R.id.add_refuelling_btn)
         val activity: MainActivity? = activity as MainActivity?
         currentVehicle = activity!!.getCurrentVehicle()
+        refuellingStatistics = RefuellingStatistics(activity!!.dbHelper!!)
         displayVehicleData()
 
         refuellingBtn!!.setOnClickListener{

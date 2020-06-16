@@ -2,12 +2,9 @@ package com.agh.wtm.vehiclemanager.db
 
 import android.content.ContentValues
 import android.database.Cursor
-import android.os.Build
 import android.provider.BaseColumns
-import androidx.annotation.RequiresApi
 import com.agh.wtm.vehiclemanager.model.Fuelling
 import com.agh.wtm.vehiclemanager.model.Vehicle
-import java.time.Instant
 import java.util.*
 
 object VehicleContract {
@@ -56,6 +53,7 @@ object VehicleContract {
         const val COLUMN_NAME_FUEL_AMOUNT = "amount"
         const val COLUMN_NAME_PRICE_PER_LITRE = "price_per_litre"
         const val COLUMN_NAME_FUEL_TYPE = "fuel_type"
+        const val COLUMN_NAME_LAST_FUELLING_MILEAGE = "last_fuelling_mileage"
         const val COLUMN_NAME_MILEAGE = "mileage"
         override val tableName = "fuellings"
 
@@ -67,6 +65,7 @@ object VehicleContract {
                     "$COLUMN_NAME_FUEL_AMOUNT DOUBLE," +
                     "$COLUMN_NAME_PRICE_PER_LITRE DOUBLE," +
                     "$COLUMN_NAME_FUEL_TYPE TEXT," +
+                    "$COLUMN_NAME_LAST_FUELLING_MILEAGE INTEGER," +
                     "$COLUMN_NAME_MILEAGE INTEGER," +
                     " FOREIGN KEY(vehicle_id) REFERENCES vehicle(vehicle_id))"
 
@@ -74,10 +73,11 @@ object VehicleContract {
         override fun values(fuelling: Fuelling): ContentValues {
             return ContentValues().apply {
                 put(COLUMN_NAME_VEHICLE_ID, fuelling.vehicleId)
-                put(COLUMN_NAME_DATE, fuelling.date?.time)//?.toInstant()?.epochSecond)
+                put(COLUMN_NAME_DATE, fuelling.date.time)
                 put(COLUMN_NAME_FUEL_AMOUNT, fuelling.fuelAmount)
                 put(COLUMN_NAME_PRICE_PER_LITRE, fuelling.pricePerLitre)
                 put(COLUMN_NAME_FUEL_TYPE, fuelling.fuelType.toString())
+                put(COLUMN_NAME_LAST_FUELLING_MILEAGE, fuelling.lastFuellingMileage)
                 put(COLUMN_NAME_MILEAGE, fuelling.mileage)
             }
         }
@@ -90,7 +90,8 @@ object VehicleContract {
                 cursor.getDouble(3),
                 cursor.getDouble(4),
                 Fuelling.FuelType.valueOf(cursor.getString(5)),
-                cursor.getInt(6)
+                cursor.getInt(6),
+                cursor.getInt(7)
             )
         }
     }

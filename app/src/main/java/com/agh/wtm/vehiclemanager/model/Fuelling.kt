@@ -3,12 +3,13 @@ package com.agh.wtm.vehiclemanager.model
 import java.util.*
 
 data class Fuelling(
-    private val id: Int,
+    private val id: Int = 0,
     val vehicleId: Int,
-    val date: Date?,
+    val date: Date = Date(),
     val fuelAmount: Double,
     val pricePerLitre: Double,
     val fuelType: FuelType,
+    val lastFuellingMileage: Int,
     val mileage: Int
 ) : Entity {
     override fun getId(): Int {
