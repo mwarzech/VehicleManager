@@ -43,10 +43,10 @@ class AddFuellingActivity : AppCompatActivity() {
 
         addFuellingBtn!!.setOnClickListener {
             run {
-                if (fuellingAmountInput!!.text.toString().isEmpty() ||
-                        fuellingPriceInput!!.text.toString().isEmpty() ||
-                        fuellingMileageInput!!.text.toString().isEmpty()){
-                    Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show()
+                if (fuellingAmountInput!!.text.toString().toDoubleOrNull() == null ||
+                        fuellingPriceInput!!.text.toString().toDoubleOrNull() == null ||
+                        fuellingMileageInput!!.text.toString().toIntOrNull() == null){
+                    Toast.makeText(this, "Please fill all fields correctly", Toast.LENGTH_LONG).show()
                     return@run
                 }
 
