@@ -39,6 +39,9 @@ class AddVehicleActivity : AppCompatActivity() {
                     vehicleMileageInput!!.text.toString().isEmpty()) {
                     Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show()
                     return@run
+                }else if (vehicleNameInput!!.text.toString().length >20){
+                    Toast.makeText(this, "Name is to long! \n Max 20 signs.", Toast.LENGTH_LONG).show()
+                    return@run
                 }
 
                 val vehicleName = vehicleNameInput!!.text.toString()

@@ -34,7 +34,7 @@ class VehicleAdapter(context: Context, @LayoutRes private val layoutResource: In
         if (currentVehicle != null) {
             initialLetter.text = currentVehicle!!.name.first().toString()
             nameLabel.text = currentVehicle!!.name
-            mileageLabel.text = currentVehicle!!.mileage.toString()
+            mileageLabel.text = String.format("%d km", currentVehicle.mileage)
         }
 
         return cView

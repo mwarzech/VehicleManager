@@ -1,6 +1,7 @@
 package com.agh.wtm.vehiclemanager.adapters
 
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +59,8 @@ class VehicleListAdapter(var vehicleList:List<Vehicle>): RecyclerView.Adapter<Ve
         val currentItem = vehicleList[position]
 
         holder.vehicleNameField.text = currentItem.name
-        holder.vehicleMileage.text = currentItem.mileage.toString()
+        holder.vehicleMileage.text = String.format("%d km", currentItem.mileage)
         holder.vehicleTypeField.text = currentItem.type.toString()
+
     }
 }
