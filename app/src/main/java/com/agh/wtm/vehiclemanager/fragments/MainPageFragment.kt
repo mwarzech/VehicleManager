@@ -43,7 +43,7 @@ class MainPageFragment constructor(private val mCtx: Context) : Fragment() {
         refuellingBtn!!.setOnClickListener{
             run {
                 val intent = Intent(getActivity(), AddFuellingActivity::class.java)
-                intent.putExtra("carId", currentVehicle!!.id)
+                intent.putExtra("carId", currentVehicle!!.getId())
                 startActivity(intent)
             }
         }

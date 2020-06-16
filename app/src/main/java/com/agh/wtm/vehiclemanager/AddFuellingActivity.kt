@@ -1,13 +1,16 @@
 package com.agh.wtm.vehiclemanager
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.agh.wtm.vehiclemanager.db.VehicleContract
 import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
 import com.agh.wtm.vehiclemanager.model.Fuelling
+import kotlinx.android.synthetic.main.activity_add_fuelling.*
 import java.util.*
 import com.agh.wtm.vehiclemanager.db.VehicleContract.FuellingEntry as Fuellings
+import com.agh.wtm.vehiclemanager.db.VehicleContract.VehicleEntry as Vehicles
 
 class AddFuellingActivity : AppCompatActivity() {
 
@@ -31,6 +34,10 @@ class AddFuellingActivity : AppCompatActivity() {
         returnBtn = findViewById(R.id.btnBackFuelling)
         dbHelper = VehicleDBHelper(this, VehicleContract.tables)
 
+        val vehicleId = intent.getIntExtra("carId", 0)
+        val vehicle = dbHelper!!.getById(Vehicles, vehicleId)
+        recent_mileage.text = String.format("Vehicle mileage: %d", vehicle!!.mileage)
+
         fuelTypeInput!!.adapter = ArrayAdapter(this, android.R.layout.simple_selectable_list_item, Fuelling.FuelType.values())
 
         addFuellingBtn!!.setOnClickListener {
@@ -42,7 +49,15 @@ class AddFuellingActivity : AppCompatActivity() {
                     return@run
                 }
 
-                addRefuelling(intent.getIntExtra("carId", 0))
+                if (fuellingMileageInput!!.text.toString().toInt() < vehicle!!.mileage){
+                    Toast.makeText(this, "Fuelling mileage should be greater than vehicle mileage", Toast.LENGTH_LONG).show()
+                    return@run
+                }
+
+                addRefuelling(vehicleId)
+                dbHelper!!.update(Vehicles, vehicle.copy(mileage = fuellingMileageInput!!.text.toString().toInt()))
+                val intent = Intent("com.agh.wtm.vehiclemanager.UPDATE_SPINNER")
+                sendBroadcast(intent)
                 finish()
             }
         }

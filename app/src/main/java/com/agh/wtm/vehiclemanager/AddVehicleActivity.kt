@@ -55,7 +55,7 @@ class AddVehicleActivity : AppCompatActivity() {
                 val mileage = vehicleMileageInput!!.text.toString().toInt()
 
                 val newVehicle = Vehicle(0, vehicleName, Vehicle.VehicleType.valueOf(vehicleType), mileage)
-                val newId = dbHelper!!.insert(VehicleContract.VehicleEntry, newVehicle)
+                dbHelper!!.insert(VehicleContract.VehicleEntry, newVehicle)
 
                 vehicleNameInput!!.text.clear()
                 vehicleMileageInput!!.text.clear()

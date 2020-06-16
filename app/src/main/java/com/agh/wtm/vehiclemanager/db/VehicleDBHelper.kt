@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.core.content.contentValuesOf
+import com.agh.wtm.vehiclemanager.model.Entity
 import com.agh.wtm.vehiclemanager.model.Fuelling
 
 class VehicleDBHelper(context: Context, private val tables: Array<VehicleContract.Table<*>>) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -25,6 +26,11 @@ class VehicleDBHelper(context: Context, private val tables: Array<VehicleContrac
     fun <T> insert(contract: VehicleContract.Table<T>, entity: T): Long {
         val entityValue = contract.values(entity)
         return writableDatabase.insert(contract.tableName, null, entityValue)
+    }
+
+    fun <T: Entity> update(contract: VehicleContract.Table<T>, entity: T): Int {
+        val entityValue = contract.values(entity)
+        return writableDatabase.update(contract.tableName, entityValue, "_id=?", arrayOf(entity.getId().toString()))
     }
 
     fun <T> getAll(contract: VehicleContract.Table<T>): List<T> {

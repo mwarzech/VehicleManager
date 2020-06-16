@@ -42,7 +42,7 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
         addFuellingFab!!.setOnClickListener {
             run {
                 val intent = Intent(activity, AddFuellingActivity::class.java)
-                intent.putExtra("carId", currentVehicle!!.id)
+                intent.putExtra("carId", currentVehicle!!.getId())
                 startActivity(intent)
             }
 
@@ -62,7 +62,7 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
 
     private fun getFuellings() =
         if (currentVehicle != null)
-            dbHelper!!.getFuellingsForVehicle(currentVehicle!!.id)
+            dbHelper!!.getFuellingsForVehicle(currentVehicle!!.getId())
         else listOf()
 
 }

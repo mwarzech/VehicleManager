@@ -3,7 +3,10 @@ package com.agh.wtm.vehiclemanager.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Vehicle(val id: Int, val name: String, val type: VehicleType, val mileage: Int): Parcelable {
+data class Vehicle(private val id: Int, val name: String, val type: VehicleType, val mileage: Int): Entity, Parcelable {
+    override fun getId(): Int {
+        return id
+    }
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
