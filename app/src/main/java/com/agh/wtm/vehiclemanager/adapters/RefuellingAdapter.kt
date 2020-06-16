@@ -22,6 +22,7 @@ class RefuellingAdapter(var refuellingList: List<Fuelling>): RecyclerView.Adapte
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.fuelling_item, parent, false)
+
         return RefuellingViewHolder(itemView)
     }
 
@@ -36,4 +37,7 @@ class RefuellingAdapter(var refuellingList: List<Fuelling>): RecyclerView.Adapte
         holder.amountField.text = currentItem.fuelAmount.toString()
     }
 
+    fun updateFuellingList(){
+        notifyDataSetChanged()
+    }
 }

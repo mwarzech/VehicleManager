@@ -33,6 +33,12 @@ class AddVehicleActivity : AppCompatActivity() {
         vehicleTypeInput!!.adapter = ArrayAdapter(this, android.R.layout.simple_selectable_list_item, Vehicle.VehicleType.values())
         dbHelper = VehicleDBHelper(this, VehicleContract.tables)
 
+        if (intent.getBooleanExtra("emptyVehicleList", false)){
+            returnBtn!!.isEnabled = false
+            returnBtn!!.visibility = View.GONE
+            onBackPressed()
+        }
+
         addVehicleBtn!!.setOnClickListener {
             run {
                 if(vehicleNameInput!!.text.toString().isEmpty() ||
@@ -63,6 +69,10 @@ class AddVehicleActivity : AppCompatActivity() {
         returnBtn!!.setOnClickListener{
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
     }
 
 }

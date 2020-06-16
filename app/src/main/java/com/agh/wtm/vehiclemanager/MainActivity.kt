@@ -64,6 +64,12 @@ class MainActivity : AppCompatActivity() {
 //        logVehiclesBtn = findViewById(R.id.log_vehicles)
         drawerLayout = findViewById(R.id.drawer_general_layout)
         vehicleAdapter = VehicleAdapter(this, 0, getVehicles())
+
+        if(vehicleAdapter!!.isEmpty){
+            val intent = Intent(this, AddVehicleActivity::class.java)
+            intent.putExtra("emptyVehicleList", true)
+            startActivity(intent)
+        }
         selectVehicleSpinner = findViewById(R.id.vehicle_spinner_list)
         selectVehicleSpinner!!.adapter = vehicleAdapter!!
         selectVehicleSpinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

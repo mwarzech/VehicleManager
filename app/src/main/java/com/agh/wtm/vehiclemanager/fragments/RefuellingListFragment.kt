@@ -50,11 +50,7 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
         return view
     }
 
-    fun updateFuellingList(){
-        refuellingListAdapter!!.refuellingList = getFuellings()
-        refuellingListAdapter!!.notifyDataSetChanged()
 
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         refuellings_list.adapter = RefuellingAdapter(getFuellings())
