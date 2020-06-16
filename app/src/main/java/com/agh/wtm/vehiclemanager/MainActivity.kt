@@ -133,9 +133,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateSpinner() {
-        val selectedVehicle : Vehicle = currentVehicle!!
+        val selectedVehicle : Vehicle? = currentVehicle
         createNewVehicleAdapter()
-        selectVehicleSpinner!!.setSelection(getSpinnerVehicleIndex(selectedVehicle))
+        if(null != currentVehicle) {
+            selectVehicleSpinner!!.setSelection(getSpinnerVehicleIndex(selectedVehicle!!))
+        }
     }
 
     private fun getSpinnerVehicleIndex(vehicle: Vehicle): Int {
