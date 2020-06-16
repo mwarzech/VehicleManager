@@ -13,7 +13,7 @@ data class Vehicle(val id: Int, val name: String, val type: VehicleType, val mil
     )
 
     enum class VehicleType {
-        CAR, MOTORCYCLE
+        Car, Motorcycle, Lorry
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

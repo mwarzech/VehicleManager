@@ -29,7 +29,7 @@ class AddVehicleActivity : AppCompatActivity() {
         vehicleNameInput = findViewById(R.id.vehicle_name_field)
         vehicleTypeInput = findViewById(R.id.vehicle_type_input)
         vehicleMileageInput = findViewById(R.id.mileage_input_field)
-        returnBtn = findViewById(R.id.btnBack)
+        returnBtn = findViewById(R.id.btnBackVehicle)
         vehicleTypeInput!!.adapter = ArrayAdapter(this, android.R.layout.simple_selectable_list_item, Vehicle.VehicleType.values())
         dbHelper = VehicleDBHelper(this, VehicleContract.tables)
 

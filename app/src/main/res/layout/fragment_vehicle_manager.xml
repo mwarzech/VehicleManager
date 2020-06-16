@@ -9,9 +9,12 @@
     <com.agh.wtm.vehiclemanager.util.EmptyRecyclerView
         android:id="@+id/vehicle_list"
         android:layout_width="match_parent"
+        android:background="@color/gray"
         android:layout_height="match_parent"
+        android:padding="4dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10.0sp" />
+        android:dividerHeight="10.0sp"
+        tools:listitem="@layout/vehicle_list_row"/>
 
     <TextView
         android:id="@+id/no_vehicles"
@@ -30,5 +33,5 @@
         android:layout_margin="@dimen/fab_margin"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/ic_add_white" />
 </RelativeLayout>

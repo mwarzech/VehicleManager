@@ -21,17 +21,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/btnBack"
+            android:id="@+id/btnBackVehicle"
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.4"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/ic_arrow_back_black"
-            android:text="" />
+            />
 
         <TextView
-            android:id="@+id/productDetails"
+            android:id="@+id/vehicleDetails"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -49,7 +49,6 @@
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:weightSum="2"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_vehicle_header">
@@ -59,12 +58,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.81"
-
             android:text="Enter name:"
-            android:textAlignment="viewEnd"
+            android:textAlignment="center"
             android:textSize="14sp"
             app:layout_constraintDimensionRatio="H, 1:6" />
-
         <EditText
             android:id="@+id/vehicle_name_field"
             android:layout_width="0dp"
@@ -95,7 +92,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Type:"
-            android:textAlignment="viewEnd"
+            android:textAlignment="center"
             android:textSize="14sp"
             app:layout_constraintDimensionRatio="H, 1:6"
             app:layout_constraintHorizontal_bias="0.5"
@@ -130,7 +127,7 @@
             android:layout_weight="0.81"
             app:layout_constraintDimensionRatio="H, 1:6"
             android:layout_height="wrap_content"
-            android:textAlignment="viewEnd"
+            android:textAlignment="center"
             android:id="@+id/mileage_field"
             android:textSize="14sp"
             app:layout_constraintHorizontal_bias="0.5" />
@@ -154,7 +151,7 @@
         android:layout_height="wrap_content"
         android:drawableRight="@drawable/ic_plus"
         android:text="Add vehicle"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"

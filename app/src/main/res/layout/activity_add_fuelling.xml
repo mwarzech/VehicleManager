@@ -7,79 +7,173 @@
     android:layout_height="match_parent"
     tools:context=".AddFuellingActivity">
 
-    <TextView
-        android:id="@+id/fuel_amount_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Fuel amount:" app:layout_constraintBottom_toTopOf="@+id/fuel_price_label"
-        app:layout_constraintEnd_toStartOf="@+id/fuel_amount" app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
-    <EditText
-        android:id="@+id/fuel_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp" android:ems="10"
-        android:inputType="numberDecimal"
-        app:layout_constraintBaseline_toBaselineOf="@+id/fuel_amount_label" app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintStart_toEndOf="@+id/fuel_amount_label"/>
-    <TextView
-        android:id="@+id/fuel_price_label"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginStart="32dp" android:layout_marginTop="32dp"
-        android:text="Fuel price per litre:"
-        app:layout_constraintBottom_toTopOf="@+id/fuel_type_label" app:layout_constraintEnd_toStartOf="@+id/fuel_price"
-        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fuel_amount_label"/>
-    <EditText
-        android:id="@+id/fuel_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:ems="10" android:inputType="numberDecimal"
-        app:layout_constraintBaseline_toBaselineOf="@+id/fuel_price_label" app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fuel_price_label"/>
-    <TextView
-        android:id="@+id/fuel_type_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Fuel type:"
-        app:layout_constraintBottom_toTopOf="@+id/fuelling_mileage_label"
-        app:layout_constraintEnd_toStartOf="@+id/fuel_type"
-        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fuel_price_label"/>
-    <Spinner
-        android:id="@+id/fuel_type"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/add_fuelling_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514" app:layout_constraintStart_toEndOf="@+id/fuel_type_label"
-        app:layout_constraintTop_toTopOf="@+id/fuel_type_label"/>
-    <TextView
-        android:id="@+id/fuelling_mileage_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Fuelling mileage:"
-        app:layout_constraintBottom_toTopOf="@+id/add_fuelling_btn" app:layout_constraintEnd_toStartOf="@+id/fuelling_mileage"
-        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fuel_type_label"/>
-    <EditText
-        android:id="@+id/fuelling_mileage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:ems="10" android:inputType="number"
-        app:layout_constraintBaseline_toBaselineOf="@+id/fuelling_mileage_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnBackFuelling"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_arrow_back_black" />
+
+        <TextView
+            android:id="@+id/fuellingDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1.2"
+            android:text="Add fuelling"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fuel_amount_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fuelling_mileage_label"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_fuelling_header">
+
+        <TextView
+            android:id="@+id/fuel_amount_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.81"
+            android:text="Fuel amount:"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintDimensionRatio="H, 1:6"/>
+        <EditText
+            android:id="@+id/fuel_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fuel_amount_label"
+            app:layout_constraintHorizontal_bias="0.5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fuel_price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fuel_amount_layout">
+
+        <TextView
+            android:id="@+id/fuel_price_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.81"
+            android:text="Fuel price per litre:"
+            android:textAlignment="center"
+            app:layout_constraintHorizontal_bias="0.5" />
+        <EditText
+            android:id="@+id/fuel_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fuel_price_label"
+            app:layout_constraintStart_toEndOf="@+id/fuel_price_label"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fuel_type_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:paddingTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fuel_price_layout">
+        <TextView
+            android:id="@+id/fuel_type_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_weight="0.81"
+            android:text="Fuel type:"
+            app:layout_constraintDimensionRatio="H, 1:6"
+            app:layout_constraintHorizontal_bias="0.5" />
+        <Spinner
+            android:id="@+id/fuel_type"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.514"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fuelling_mileage_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fuel_type_layout">
+        <TextView
+            android:id="@+id/fuelling_mileage_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.81"
+            android:text="Fuelling mileage:"
+            android:textAlignment="center"
+            app:layout_constraintHorizontal_bias="0.5" />
+        <EditText
+            android:id="@+id/fuelling_mileage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fuelling_mileage_label" />
+
+    </LinearLayout>
+
+
     <Button
         android:id="@+id/add_fuelling_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp" android:text="Add fuelling"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Add fuelling"
+        android:textSize="15sp"
+        android:drawableRight="@drawable/ic_plus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fuelling_mileage_label"/>
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fuelling_mileage_layout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ class AddFuellingActivity : AppCompatActivity() {
     private var fuelTypeInput: Spinner? = null
     private var fuellingMileageInput: TextView? = null
     private var addFuellingBtn: Button? = null
+    private var returnBtn: Button? = null
     private var dbHelper: VehicleDBHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +31,7 @@ class AddFuellingActivity : AppCompatActivity() {
         fuellingMileageInput = findViewById(R.id.fuelling_mileage)
         fuelTypeInput = findViewById(R.id.fuel_type)
         addFuellingBtn = findViewById(R.id.add_fuelling_btn)
+        returnBtn = findViewById(R.id.btnBackFuelling)
         dbHelper = VehicleDBHelper(this, VehicleContract.tables)
 
         fuelTypeInput!!.adapter = ArrayAdapter(this, android.R.layout.simple_selectable_list_item, Fuelling.FuelType.values())
@@ -38,6 +40,10 @@ class AddFuellingActivity : AppCompatActivity() {
             run {
                 addRefuelling(intent.getIntExtra("carId", 0))
             }
+        }
+
+        returnBtn!!.setOnClickListener{
+            finish()
         }
     }
 

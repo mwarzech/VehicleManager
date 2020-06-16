@@ -33,6 +33,6 @@ class Fuelling {
 
 
     enum class FuelType {
-        ON, GASOLINE
+       Pb95, Pb98, ON
     }
 }
