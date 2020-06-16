@@ -16,6 +16,7 @@ class RefuellingAdapter(var refuellingList: List<Fuelling>): RecyclerView.Adapte
         val dateField: TextView = itemView.refuelling_date_field
         val priceField: TextView = itemView.refuelling_price_field
         val amountField: TextView = itemView.refuelling_amount_field
+        val consumptionField: TextView = itemView.fuel_consumption
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RefuellingViewHolder {
@@ -35,9 +36,10 @@ class RefuellingAdapter(var refuellingList: List<Fuelling>): RecyclerView.Adapte
         holder.dateField.text = formatter.format(currentItem.date)
         holder.priceField.text = String.format("%.2f zł", currentItem.pricePerLitre)
         holder.amountField.text = currentItem.fuelAmount.toString()
+        //holder.consumptionField.text = String.format("%.2f l/km", consumption())
     }
+    //TODO("Obliczyć spalanie")
+    /*fun consumption(){
 
-    fun updateFuellingList(){
-        notifyDataSetChanged()
-    }
+    }*/
 }

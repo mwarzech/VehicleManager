@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                   android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
                                    android:layout_height="wrap_content"
                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                    app:cardCornerRadius="4dp"
@@ -18,29 +19,67 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/gas_station"/>
-        <TextView
-            android:id="@+id/refuelling_date_field"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:text="2020-06-01"
-            android:textSize="18sp" app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"/>
-        <TextView
-            android:id="@+id/refuelling_price_field"
-            android:layout_width="wrap_content"
+            android:weightSum="2"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/refuelling_date_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_weight="1"
+                android:text="2020-06-01"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/refuelling_amount_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:textAlignment="viewEnd"
+                android:text="Refuelling amount"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp" android:text="Price"
-            android:textSize="18sp" android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageView" app:layout_constraintTop_toBottomOf="@+id/refuelling_date_field"/>
-        <TextView
-            android:id="@+id/refuelling_amount_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:text="Refuelling amount" android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/refuelling_date_field" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/refuelling_date_field"/>
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView">
+
+            <TextView
+                android:id="@+id/refuelling_price_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_weight="1"
+                android:text="Price"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fuel_consumption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewEnd"
+                android:layout_weight="1"
+                android:text="fuel consuption"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
