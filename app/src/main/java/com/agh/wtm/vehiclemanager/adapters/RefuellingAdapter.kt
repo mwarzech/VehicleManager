@@ -35,11 +35,11 @@ class RefuellingAdapter(var refuellingList: List<Fuelling>): RecyclerView.Adapte
         val formatter = SimpleDateFormat("YYYY-mm-dd")
         holder.dateField.text = formatter.format(currentItem.date)
         holder.priceField.text = String.format("%.2f zł", currentItem.pricePerLitre)
-        holder.amountField.text = currentItem.fuelAmount.toString()
-        //holder.consumptionField.text = String.format("%.2f l/km", consumption())
+        holder.amountField.text = String.format("%.2f l", currentItem.fuelAmount)
+        holder.consumptionField.text = String.format("%.2f l/km", consumption(currentItem))
     }
-    //TODO("Obliczyć spalanie")
-    /*fun consumption(){
 
-    }*/
+    private fun consumption(currentItem: Fuelling): Double {
+        return currentItem.fuelAmount / (currentItem.mileage - currentItem.lastFuellingMileage) * 100
+    }
 }
