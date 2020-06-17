@@ -21,6 +21,7 @@ data class RefuellingStatistics(val dbHelper: VehicleDBHelper){
         var summaryCost = 0.0
         var minConsumption = 0.0
         var maxConsumption = 0.0
+        val refuellingsNumber = refuellings.size
 
         refuellings.forEach {
             summaryConsumption += it.fuelAmount
@@ -33,11 +34,14 @@ data class RefuellingStatistics(val dbHelper: VehicleDBHelper){
         }
 
         return Statistics(
+            summaryDistance = summaryDistance,
+            summaryConsumption = summaryConsumption,
             avgConsumption = summaryConsumption / summaryDistance  * 100,
             avgPricePerKilometer = summaryCost / summaryDistance,
             summaryCost = summaryCost,
             minConsumption = minConsumption,
-            maxConsumption = maxConsumption
+            maxConsumption = maxConsumption,
+            refuellingsNumber = refuellingsNumber
         )
     }
 

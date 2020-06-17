@@ -27,7 +27,6 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
     private var dbHelper: VehicleDBHelper? = null
     private var currentVehicle: Vehicle? = null
     private var addFuellingFab: FloatingActionButton? = null
-    private var refuellingListAdapter: RefuellingAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

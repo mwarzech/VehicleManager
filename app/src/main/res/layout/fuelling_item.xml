@@ -11,16 +11,19 @@
         android:layout_width="match_parent"
         android:padding="10dp"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/gas_station"/>
+            app:srcCompat="@drawable/gas_station" />
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:weightSum="2"
@@ -39,44 +42,80 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/refuelling_amount_field"
+                android:id="@+id/fuel_consumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-
+                android:text="fuel consuption"
                 android:textAlignment="viewEnd"
-                android:text="Refuelling amount"
-                android:textSize="18sp"/>
-
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
+
+        <!--<LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <TextView
+                android:id="@+id/refuelling_cost_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="cost"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </LinearLayout>-->
 
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:weightSum="2"
+
+            android:weightSum="4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView">
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/fuelImg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_weight="0.6"
+                app:srcCompat="@drawable/ic_invert_colors_24px" />
 
             <TextView
                 android:id="@+id/refuelling_price_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_weight="1"
-                android:text="Price"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_weight="1.2"
+                android:text="PricePerL" />
 
             <TextView
-                android:id="@+id/fuel_consumption"
+                android:id="@+id/refuelling_amount_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="viewEnd"
-                android:layout_weight="1"
-                android:text="fuel consuption"
+                android:layout_weight="1.2"
+
+                android:text="Refuelling amount"
+                android:textAlignment="viewStart" />
+
+            <TextView
+                android:id="@+id/refuelling_cost_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="cost"
+                android:layout_weight="1.2"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
         </LinearLayout>
