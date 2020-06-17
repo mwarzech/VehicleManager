@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".AddVehicleActivity">
 
+    <!--Add vehicle header-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/add_vehicle_header"
         android:layout_width="match_parent"
@@ -47,6 +48,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--Name layout-->
     <LinearLayout
         android:id="@+id/vehicle_name_layout"
         android:layout_width="match_parent"
@@ -77,6 +79,7 @@
             app:layout_constraintHorizontal_bias="0.5"/>
     </LinearLayout>
 
+    <!--Fuel type layout-->
     <LinearLayout
         android:id="@+id/vehicle_type_layout"
         android:layout_width="match_parent"
@@ -99,8 +102,7 @@
             android:textAlignment="center"
             android:textSize="14sp"
             app:layout_constraintDimensionRatio="H, 1:6"
-            app:layout_constraintHorizontal_bias="0.5"
-        />
+            app:layout_constraintHorizontal_bias="0.5" />
 
         <Spinner
             android:id="@+id/vehicle_type_input"
@@ -115,6 +117,7 @@
             app:layout_constraintHorizontal_bias="0.5"/>
     </LinearLayout>
 
+    <!--Mileage layout-->
     <LinearLayout
         android:id="@+id/vehicle_mileage_layout"
         android:layout_width="match_parent"
@@ -146,9 +149,9 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/mileage_field"
             app:layout_constraintHorizontal_bias="0.5"
             android:hint="100000"/>
-
     </LinearLayout>
 
+    <!--Add vehicle button-->
     <Button
         android:id="@+id/add_vehicle_btn"
         android:layout_width="170dp"
@@ -160,6 +163,5 @@
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vehicle_mileage_layout"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

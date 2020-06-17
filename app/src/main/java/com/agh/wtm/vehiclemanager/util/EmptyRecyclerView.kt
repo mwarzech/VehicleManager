@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-
 class EmptyRecyclerView : RecyclerView {
     private var emptyView: View? = null
 

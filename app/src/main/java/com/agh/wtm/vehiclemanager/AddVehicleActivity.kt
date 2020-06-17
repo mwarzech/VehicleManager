@@ -12,7 +12,6 @@ import com.agh.wtm.vehiclemanager.db.VehicleDBHelper
 import com.agh.wtm.vehiclemanager.fragments.VehicleManagerFragment
 import com.agh.wtm.vehiclemanager.model.Vehicle
 
-
 class AddVehicleActivity : AppCompatActivity() {
 
     private var addVehicleBtn: Button? = null

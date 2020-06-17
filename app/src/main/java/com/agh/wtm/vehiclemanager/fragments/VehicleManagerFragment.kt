@@ -21,9 +21,6 @@ import kotlinx.android.synthetic.main.fragment_vehicle_manager.*
 import com.agh.wtm.vehiclemanager.db.VehicleContract.VehicleEntry as Vehicles
 
 
-/**
- * A simple [Fragment] subclass.
- */
 class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() {
 
     private var addVehicleFab: FloatingActionButton? = null

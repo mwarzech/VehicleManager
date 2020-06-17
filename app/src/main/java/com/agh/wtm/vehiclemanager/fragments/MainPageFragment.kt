@@ -38,8 +38,6 @@ class MainPageFragment constructor(private val mCtx: Context) : Fragment() {
     private var worstConsumptionA: TextView? = null
     private var bestConsumptionA: TextView? = null
 
-
-
     private var refuellingStatistics: RefuellingStatistics? = null
 
     override fun onCreateView(

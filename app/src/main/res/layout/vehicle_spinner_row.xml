@@ -23,7 +23,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/spinner_vehicle_name"
             android:layout_width="wrap_content"
@@ -48,6 +47,5 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/spinner_letter" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

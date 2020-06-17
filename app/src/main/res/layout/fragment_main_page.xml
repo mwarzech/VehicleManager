@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
-   >
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,6 +32,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <!--Vehicle info   -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vehicle_info"
@@ -104,6 +103,7 @@
                     android:textAlignment="center"/>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <!--Avg stat header (for month)-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/avg_stat_header"
@@ -139,6 +139,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <!--Avg statistics (for month)-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vehicle_avg_stat"
@@ -375,8 +376,8 @@
                     android:text="best consumption"
                     android:textAlignment="center" />
             </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <!--Avg stat header (for whole period)-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/avg_stat_all_header"
@@ -412,6 +413,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView1" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <!--Avg statistics (for whole period)-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vehicle_avg_all_stat"
@@ -648,8 +650,6 @@
                     android:text="best consumption"
                     android:textAlignment="center" />
             </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

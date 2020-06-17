@@ -19,9 +19,6 @@ import com.agh.wtm.vehiclemanager.model.Vehicle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_refuelling_list.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class RefuellingListFragment constructor(private val mCtx: Context): Fragment() {
 
     private var dbHelper: VehicleDBHelper? = null
@@ -44,12 +41,9 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
                 intent.putExtra("carId", currentVehicle!!.getId())
                 startActivity(intent)
             }
-
         }
         return view
     }
-
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         refuellings_list.adapter = RefuellingAdapter(getFuellings())

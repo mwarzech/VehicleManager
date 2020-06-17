@@ -68,8 +68,6 @@ class AddFuellingActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun addRefuelling(vehicle: Vehicle) {
         val fuellingAmount: Double = fuellingAmountInput!!.text.toString().toDouble()
         val fuellingPrice: Double = fuellingPriceInput!!.text.toString().toDouble()
