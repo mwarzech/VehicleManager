@@ -54,7 +54,12 @@ class VehicleDBHelper(context: Context, private val tables: Array<VehicleContrac
             .map { fuellings.fromCursor(it) }
             .toList()
     }
-    
+
+    fun deleteFuellingsForVehicle(vehicleId: Int): Boolean {
+        val fuellings = VehicleContract.FuellingEntry
+        return writableDatabase.delete(fuellings.tableName, "vehicle_id=?",arrayOf(vehicleId.toString())) > 0
+    }
+
     fun <T> deleteById(contract: VehicleContract.Table<T>, id: Int): Boolean {
         return writableDatabase.delete(contract.tableName, "_id=?", arrayOf(id.toString())) > 0
     }

@@ -52,6 +52,7 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
             override fun onDeleteClick(position: Int) {
                 val vehicleToRemove: Vehicle = vehicleListAdapter!!.getElementOnPosition(position)
                 dbHelper!!.deleteById(Vehicles, vehicleToRemove.getId())
+                dbHelper!!.deleteFuellingsForVehicle(vehicleToRemove.getId())
                 vehicleListAdapter!!.vehicleList = getVehicles()
                 (activity as MainActivity).updateSpinner()
                 vehicleListAdapter!!.notifyItemRemoved(position)
