@@ -4,6 +4,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -22,6 +26,8 @@ import com.agh.wtm.vehiclemanager.fragments.VehicleManagerFragment
 import com.agh.wtm.vehiclemanager.model.Vehicle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.BufferedInputStream
+import java.net.URL
 import com.agh.wtm.vehiclemanager.db.VehicleContract.VehicleEntry as Vehicles
 
 class MainActivity : AppCompatActivity() {
