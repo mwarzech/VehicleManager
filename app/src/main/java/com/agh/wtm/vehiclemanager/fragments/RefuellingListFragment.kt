@@ -1,7 +1,5 @@
 package com.agh.wtm.vehiclemanager.fragments
 
-
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,7 +17,7 @@ import com.agh.wtm.vehiclemanager.model.Vehicle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_refuelling_list.*
 
-class RefuellingListFragment constructor(private val mCtx: Context): Fragment() {
+class RefuellingListFragment: Fragment() {
 
     private var dbHelper: VehicleDBHelper? = null
     private var currentVehicle: Vehicle? = null
@@ -30,7 +28,7 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_refuelling_list, container, false)
-        dbHelper = VehicleDBHelper(mCtx, VehicleContract.tables)
+        dbHelper = VehicleDBHelper(activity!!.applicationContext, VehicleContract.tables)
         addFuellingFab = view.findViewById(R.id.add_fuelling_fab)
         val mainActivity: MainActivity? = activity as MainActivity?
         currentVehicle = mainActivity!!.getCurrentVehicle()
@@ -47,7 +45,7 @@ class RefuellingListFragment constructor(private val mCtx: Context): Fragment() 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         refuellings_list.adapter = RefuellingAdapter(getFuellings())
-        refuellings_list.layoutManager = LinearLayoutManager(mCtx)
+        refuellings_list.layoutManager = LinearLayoutManager(activity!!.applicationContext)
         refuellings_list.setEmptyView(no_refuellings)
         refuellings_list.setHasFixedSize(true)
         super.onActivityCreated(savedInstanceState)

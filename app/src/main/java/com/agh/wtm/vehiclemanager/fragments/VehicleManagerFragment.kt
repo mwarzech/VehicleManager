@@ -20,8 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_vehicle_manager.*
 import com.agh.wtm.vehiclemanager.db.VehicleContract.VehicleEntry as Vehicles
 
-
-class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() {
+class VehicleManagerFragment: Fragment() {
 
     private var addVehicleFab: FloatingActionButton? = null
     private var dbHelper: VehicleDBHelper? = null
@@ -33,7 +32,7 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_vehicle_manager, container, false)
         addVehicleFab = view.findViewById(R.id.add_vehicle_fab)
-        dbHelper = VehicleDBHelper(mCtx, VehicleContract.tables)
+        dbHelper = VehicleDBHelper(activity!!.applicationContext, VehicleContract.tables)
 
         addVehicleFab!!.setOnClickListener {
             val intent = Intent(activity, AddVehicleActivity::class.java)
@@ -56,7 +55,7 @@ class VehicleManagerFragment constructor(private val mCtx: Context): Fragment() 
             }
         })
         vehicle_list.adapter = vehicleListAdapter
-        vehicle_list.layoutManager = LinearLayoutManager(mCtx)
+        vehicle_list.layoutManager = LinearLayoutManager(activity!!.applicationContext)
         vehicle_list.setEmptyView(no_vehicles)
         vehicle_list.hasFixedSize()
 

@@ -1,7 +1,5 @@
 package com.agh.wtm.vehiclemanager.fragments
 
-
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +11,7 @@ import com.agh.wtm.vehiclemanager.R
 import com.agh.wtm.vehiclemanager.logic.RefuellingStatistics
 import com.agh.wtm.vehiclemanager.model.Vehicle
 
-class MainPageFragment constructor(private val mCtx: Context) : Fragment() {
+class MainPageFragment: Fragment() {
 
     private var vehicleNameText: TextView? = null
     private var vehicleMileageText: TextView? = null
@@ -69,7 +67,7 @@ class MainPageFragment constructor(private val mCtx: Context) : Fragment() {
 
         val activity: MainActivity? = activity as MainActivity?
         currentVehicle = activity!!.getCurrentVehicle()
-        refuellingStatistics = RefuellingStatistics(activity!!.dbHelper!!)
+        refuellingStatistics = RefuellingStatistics(activity.dbHelper!!)
 
         displayVehicleData()
 

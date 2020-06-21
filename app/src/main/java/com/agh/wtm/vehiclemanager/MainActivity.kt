@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
@@ -33,24 +34,29 @@ class MainActivity : AppCompatActivity() {
     private lateinit var broadcastUpdateSpinner: BroadcastReceiver
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId){
+        return@OnNavigationItemSelectedListener switchFragment(item.itemId)
+    }
+
+    fun switchFragment(fragmentId: Int): Boolean {
+        when (fragmentId){
             R.id.main_page -> {
                 println("main page pressed")
-                replaceFragment(MainPageFragment(applicationContext))
-                return@OnNavigationItemSelectedListener true
+                replaceFragment(MainPageFragment())
+                return true
             }
             R.id.refuelling_list -> {
                 println("refuelling pressed")
-                replaceFragment(RefuellingListFragment(applicationContext))
-                return@OnNavigationItemSelectedListener true
+                replaceFragment(RefuellingListFragment())
+                return true
             }
             R.id.vehicle_manager -> {
                 println("vehicle manager pressed")
-                replaceFragment(VehicleManagerFragment(applicationContext))
-                return@OnNavigationItemSelectedListener true
+                replaceFragment(VehicleManagerFragment())
+                return true
             }
         }
-        false
+
+        return false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,9 +78,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        bottom_nav.selectedItemId = R.id.main_page
         bottom_nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        replaceFragment(MainPageFragment(applicationContext))
+        Log.d("lastWarzecha", " " + lastNonConfigurationInstance)
+        if ( (lastCustomNonConfigurationInstance as? Int) != null ) {
+            bottom_nav.selectedItemId = (lastCustomNonConfigurationInstance as Int)
+        } else {
+            bottom_nav.selectedItemId = R.id.main_page
+        }
+        switchFragment(bottom_nav.selectedItemId)
 
         val updateSpinnerFilter = IntentFilter("com.agh.wtm.vehiclemanager.UPDATE_SPINNER")
         broadcastUpdateSpinner = object : BroadcastReceiver(){
@@ -151,5 +162,9 @@ class MainActivity : AppCompatActivity() {
 
     fun getCurrentVehicle(): Vehicle? {
         return currentVehicle
+    }
+
+    override fun onRetainCustomNonConfigurationInstance(): Any {
+        return bottom_nav.selectedItemId
     }
 }
