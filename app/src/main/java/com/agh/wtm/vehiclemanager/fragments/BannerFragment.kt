@@ -1,6 +1,5 @@
 package com.agh.wtm.vehiclemanager.fragments
 
-import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -15,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.agh.wtm.vehiclemanager.R
-import kotlinx.android.synthetic.main.fragment_banner.view.*
 import java.io.BufferedInputStream
 import java.io.InputStream
 import java.lang.Exception

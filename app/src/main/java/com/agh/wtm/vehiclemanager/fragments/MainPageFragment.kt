@@ -1,30 +1,16 @@
 package com.agh.wtm.vehiclemanager.fragments
 
 import android.content.res.Configuration
-import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.agh.wtm.vehiclemanager.MainActivity
 import com.agh.wtm.vehiclemanager.R
 import com.agh.wtm.vehiclemanager.logic.RefuellingStatistics
 import com.agh.wtm.vehiclemanager.model.Vehicle
-import kotlinx.android.synthetic.main.fragment_main_page.*
-import java.io.BufferedInputStream
-import java.io.InputStream
-import java.lang.Exception
-import java.net.URL
-import java.util.concurrent.TimeUnit
 
 class MainPageFragment: Fragment() {
 
