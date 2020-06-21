@@ -32,7 +32,7 @@ class VehicleAdapter(context: Context, @LayoutRes private val layoutResource: In
         val currentVehicle: Vehicle? = getItem(position)
 
         if (currentVehicle != null) {
-            initialLetter.text = currentVehicle.name.first().toString()
+            initialLetter.text = currentVehicle.name.first().toString().toUpperCase()
             nameLabel.text = currentVehicle.name
             mileageLabel.text = String.format("%d km", currentVehicle.mileage)
         }

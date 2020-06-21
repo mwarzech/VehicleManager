@@ -86,13 +86,11 @@ class MainPageFragment: Fragment() {
 
         displayVehicleData()
 
-        val imageViewBanner = view.findViewById<ImageView>(R.id.banner)
 
-        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE && imageViewBanner != null) {
-            val image = DownloadImage()
-                .execute("https://images.cdn4.stockunlimited.net/photos/man-in-coveralls-holding-fuel-pump-and-showing-ok-sign_1865754.png")
-                .get(10, TimeUnit.SECONDS)
-            imageViewBanner.setImageDrawable(image)
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            val fragmentTransaction = fragmentManager!!.beginTransaction()
+            fragmentTransaction.replace(R.id.banner_fragment, BannerFragment())
+            fragmentTransaction.commit()
         }
 
         return view
@@ -125,27 +123,6 @@ class MainPageFragment: Fragment() {
             worstConsumptionA!!.text = String.format("%.2f l/100km", wholePeriodStat.maxConsumption)
             bestConsumptionA!!.text = String.format("%.2f l/100km", wholePeriodStat.minConsumption)
 
-        }
-    }
-
-    private class DownloadImage: AsyncTask<String, Integer, Drawable>() {
-        private fun downloadImage(_url: String): Drawable {
-            return try {
-                val url = URL(_url)
-                val input: InputStream = url.openStream()
-                val buf = BufferedInputStream(input)
-                val bMap: Bitmap = BitmapFactory.decodeStream(buf)
-
-                input?.close()
-                buf.close()
-                BitmapDrawable(Resources.getSystem(), bMap)
-            } catch (e: Exception) {
-                ColorDrawable(0)
-            }
-        }
-
-        override fun doInBackground(vararg params: String?): Drawable {
-            return downloadImage(params[0]!!)
         }
     }
 }

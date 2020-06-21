@@ -85,7 +85,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         bottom_nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        Log.d("lastWarzecha", " " + lastNonConfigurationInstance)
         if ( (lastCustomNonConfigurationInstance as? Int) != null ) {
             bottom_nav.selectedItemId = (lastCustomNonConfigurationInstance as Int)
         } else {
