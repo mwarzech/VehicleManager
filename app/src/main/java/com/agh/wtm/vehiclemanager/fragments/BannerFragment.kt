@@ -36,7 +36,7 @@ class BannerFragment : Fragment() {
         return view
     }
 
-    private class DownloadImage(val imageViewBanner: ImageView): AsyncTask<String, Integer, Drawable>() {
+    private class DownloadImage(val imageViewBanner: ImageView): AsyncTask<String, Void, Drawable>() {
 
         private fun downloadImage(_url: String): Drawable {
             return try {
@@ -58,7 +58,9 @@ class BannerFragment : Fragment() {
         }
 
         override fun onPostExecute(result: Drawable?) {
-            imageViewBanner.setImageDrawable(result)
+            if(result != null) {
+                imageViewBanner.setImageDrawable(result)
+            }
         }
     }
 
