@@ -29,19 +29,14 @@ class BannerFragment : Fragment() {
         val imageViewBanner = view.findViewById<ImageView>(R.id.banner)
 
         if (imageViewBanner != null) {
-            val image = DownloadImage(imageViewBanner)
+            DownloadImage(imageViewBanner)
                 .execute("https://images.cdn4.stockunlimited.net/photos/man-in-coveralls-holding-fuel-pump-and-showing-ok-sign_1865754.png")
         }
 
         return view
     }
 
-    private class DownloadImage(imageViewBanner: ImageView?): AsyncTask<String, Integer, Drawable>() {
-        var imageViewBanner: ImageView? = null
-
-        init {
-            this.imageViewBanner = imageViewBanner
-        }
+    private class DownloadImage(val imageViewBanner: ImageView): AsyncTask<String, Integer, Drawable>() {
 
         private fun downloadImage(_url: String): Drawable {
             return try {
@@ -50,7 +45,7 @@ class BannerFragment : Fragment() {
                 val buf = BufferedInputStream(input)
                 val bMap: Bitmap = BitmapFactory.decodeStream(buf)
 
-                input?.close()
+                input.close()
                 buf.close()
                 BitmapDrawable(Resources.getSystem(), bMap)
             } catch (e: Exception) {
@@ -63,9 +58,7 @@ class BannerFragment : Fragment() {
         }
 
         override fun onPostExecute(result: Drawable?) {
-            if (imageViewBanner != null) {
-                imageViewBanner!!.setImageDrawable(result)
-            }
+            imageViewBanner.setImageDrawable(result)
         }
     }
 
