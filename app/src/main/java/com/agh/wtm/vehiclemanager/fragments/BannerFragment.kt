@@ -16,9 +16,7 @@ import androidx.fragment.app.Fragment
 import com.agh.wtm.vehiclemanager.R
 import java.io.BufferedInputStream
 import java.io.InputStream
-import java.lang.Exception
 import java.net.URL
-import java.util.concurrent.TimeUnit
 
 class BannerFragment : Fragment() {
 
@@ -31,17 +29,20 @@ class BannerFragment : Fragment() {
         val imageViewBanner = view.findViewById<ImageView>(R.id.banner)
 
         if (imageViewBanner != null) {
-            val image = DownloadImage()
+            val image = DownloadImage(imageViewBanner)
                 .execute("https://images.cdn4.stockunlimited.net/photos/man-in-coveralls-holding-fuel-pump-and-showing-ok-sign_1865754.png")
-                .get(10, TimeUnit.SECONDS)
-            imageViewBanner.setImageDrawable(image)
         }
 
         return view
     }
 
+    private class DownloadImage(imageViewBanner: ImageView?): AsyncTask<String, Integer, Drawable>() {
+        var imageViewBanner: ImageView? = null
 
-    private class DownloadImage: AsyncTask<String, Integer, Drawable>() {
+        init {
+            this.imageViewBanner = imageViewBanner
+        }
+
         private fun downloadImage(_url: String): Drawable {
             return try {
                 val url = URL(_url)
@@ -60,5 +61,12 @@ class BannerFragment : Fragment() {
         override fun doInBackground(vararg params: String?): Drawable {
             return downloadImage(params[0]!!)
         }
+
+        override fun onPostExecute(result: Drawable?) {
+            if (imageViewBanner != null) {
+                imageViewBanner!!.setImageDrawable(result)
+            }
+        }
     }
+
 }
