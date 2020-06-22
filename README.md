@@ -1,4 +1,7 @@
-# VehicleFuellingManager App
+# VehicleFuellingManager App - Fuelizer
+
+**Fuelizer = Fuel + Organizer** <img src="https://github.com/jserweta/VehicleManager/tree/master/app/src/main/ic_launcher-web.png" width="256">
+
 Aplikacja mobilna na platformę Android, stworzona na potrzeby projektu z przedmiotu Wprowadzenie do technologii mobilnych.
 
 W prosty sposób ułatwia użytkownikowi obliczanie zużycia oraz prowadzenie historii kosztów paliwa, dla poszczególnych pojazdów.
