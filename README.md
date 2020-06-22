@@ -8,7 +8,6 @@ W prosty sposób ułatwia użytkownikowi obliczanie zużycia oraz prowadzenie hi
 [Link here!](https://github.com/jserweta/VehicleManager/blob/master/Vehicle_Fuelling_Manager_dokumentacja.pdf)
 
 ## Screenshots:
+<img src="https://github.com/jserweta/VehicleManager/blob/master/mainScreen.jpg" width="304" >
 
-![Screenshot](https://github.com/jserweta/VehicleManager/blob/master/mainScreen.jpg | width=304)
-
-![Screenshot](https://github.com/jserweta/VehicleManager/blob/master/fuellingScreen.jpg | width=304)
+<img src="https://github.com/jserweta/VehicleManager/blob/master/fuellingScreen.jpg" width="304" >
