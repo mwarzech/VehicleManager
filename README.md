@@ -9,6 +9,6 @@ W prosty sposób ułatwia użytkownikowi obliczanie zużycia oraz prowadzenie hi
 
 ## Screenshots:
 
-![Screenshot](https://github.com/jserweta/VehicleManager/blob/master/mainScreen.jpg)
+![Screenshot](https://github.com/jserweta/VehicleManager/blob/master/mainScreen.jpg | width=304)
 
-![Screenshot](https://github.com/jserweta/VehicleManager/blob/master/fuellingScreen.jpg)
+![Screenshot](https://github.com/jserweta/VehicleManager/blob/master/fuellingScreen.jpg | width=304)
