@@ -1,6 +1,6 @@
 # VehicleFuellingManager App - Fuelizer
 
-**Fuelizer = Fuel + Organizer** <img src="https://github.com/jserweta/VehicleManager/tree/master/app/src/main/ic_launcher-web.png" width="256">
+<img src="https://github.com/jserweta/VehicleManager/blob/master/app/src/main/ic_launcher-web.png" width="256"> **Fuelizer = Fuel + Organizer**
 
 Aplikacja mobilna na platformę Android, stworzona na potrzeby projektu z przedmiotu Wprowadzenie do technologii mobilnych.
 
